@@ -4,2126 +4,1112 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Agri Sakhi | Digital Farming Companion</title>
+<meta name="theme-color" content="#f3f7f2">
+<title>Agri Sakhi | The Intelligent Farm Guardian</title>
 
 <style>
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Manrope:wght@400;500;600;700;800&display=swap');
-
 :root {
-  --green: #246b45;
-  --green-dark: #174b31;
-  --green-light: #eaf4ed;
-  --lime: #b5d99b;
-  --cream: #f7f8f3;
-  --white: #ffffff;
-  --text: #24342a;
-  --muted: #829087;
-  --border: #e7ece7;
-  --orange: #e9a34b;
-  --red: #d66d5e;
-  --shadow: 0 8px 30px rgba(32, 65, 43, .06);
+  --bg:#f3f7f2;
+  --surface:#ffffff;
+  --surface2:#edf3ed;
+  --text:#20352a;
+  --muted:#748378;
+  --primary:#268451;
+  --primary2:#d9f0df;
+  --border:#e1eae1;
+  --shadow:0 5px 24px rgba(30,70,45,.06);
 }
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+[data-theme="dark"] {
+  --bg:#101b20;
+  --surface:#19282e;
+  --surface2:#22353b;
+  --text:#e5f1ed;
+  --muted:#a0b4ae;
+  --primary:#62c995;
+  --primary2:#244a3b;
+  --border:#30444a;
+  --shadow:0 5px 24px rgba(0,0,0,.16);
 }
+
+* {box-sizing:border-box;margin:0;padding:0}
 
 body {
-  font-family: 'DM Sans', sans-serif;
-  background: var(--cream);
-  color: var(--text);
+  font-family:Inter,Arial,sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  transition:background .25s,color .25s;
 }
 
-button, input, select {
-  font: inherit;
-}
+button,input,select {font:inherit}
+button {cursor:pointer}
 
-button {
-  cursor: pointer;
-  border: none;
-}
-
-.app {
-  display: flex;
-  min-height: 100vh;
-}
-
-/* SIDEBAR */
+.app {display:flex;min-height:100vh}
 
 .sidebar {
-  width: 255px;
-  background: var(--green-dark);
-  color: white;
-  padding: 28px 18px;
-  position: fixed;
-  inset: 0 auto 0 0;
-  display: flex;
-  flex-direction: column;
-  z-index: 10;
-  transition: transform .3s ease;
+  width:245px;
+  background:var(--surface);
+  border-right:1px solid var(--border);
+  padding:25px 17px;
+  position:fixed;
+  top:0;bottom:0;left:0;
+  overflow-y:auto;
+  z-index:10;
 }
 
 .brand {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  padding: 0 10px;
-  margin-bottom: 42px;
+  display:flex;
+  align-items:center;
+  gap:11px;
+  margin:0 5px 35px;
 }
 
 .brand-icon {
-  width: 43px;
-  height: 43px;
-  border-radius: 14px;
-  background: #d9edca;
-  color: var(--green-dark);
-  display: grid;
-  place-items: center;
-  font-size: 23px;
+  background:var(--primary2);
+  width:43px;height:43px;
+  display:grid;place-items:center;
+  border-radius:13px;
+  font-size:23px;
 }
 
-.brand h2 {
-  font-family: 'Manrope', sans-serif;
-  font-size: 20px;
-  font-weight: 800;
-}
-
-.brand p {
-  font-size: 10px;
-  color: #b9d4c2;
-  letter-spacing: 1.2px;
-  text-transform: uppercase;
-  margin-top: 2px;
-}
+.brand h2 {font-size:19px}
+.brand p {font-size:11px;color:var(--muted);margin-top:3px}
 
 .nav-label {
-  font-size: 10px;
-  letter-spacing: 1.5px;
-  color: #9bb9a5;
-  padding: 0 12px;
-  margin: 16px 0 10px;
+  color:var(--muted);
+  font-size:10px;
+  font-weight:800;
+  letter-spacing:1.5px;
+  margin:20px 10px 10px;
 }
 
-.nav-link {
-  display: flex;
-  align-items: center;
-  gap: 13px;
-  padding: 13px 14px;
-  color: #c8d9ce;
-  border-radius: 11px;
-  margin-bottom: 5px;
-  font-size: 13px;
-  font-weight: 600;
-  background: transparent;
-  width: 100%;
-  text-align: left;
-  transition: .2s;
+.nav-item {
+  display:flex;
+  align-items:center;
+  gap:12px;
+  padding:12px;
+  margin:4px 0;
+  border-radius:10px;
+  color:var(--muted);
+  font-size:13px;
+  font-weight:600;
+  cursor:pointer;
+  transition:.2s;
 }
 
-.nav-link:hover, .nav-link.active {
-  background: #2e704b;
-  color: white;
+.nav-item:hover,.nav-item.active {
+  background:var(--primary2);
+  color:var(--primary);
 }
 
-.nav-link span:first-child {
-  font-size: 17px;
-  width: 22px;
-}
+.nav-icon {font-size:17px;width:21px;text-align:center}
 
-.sidebar-bottom {
-  margin-top: auto;
-  background: #285c3e;
-  padding: 16px;
-  border-radius: 14px;
+.sidebar-footer {
+  margin-top:35px;
+  padding:15px;
+  border-radius:12px;
+  background:var(--surface2);
+  font-size:12px;
+  color:var(--muted);
+  line-height:1.7;
 }
-
-.sidebar-bottom p {
-  font-size: 12px;
-  color: #d1e5d5;
-  line-height: 1.6;
-}
-
-/* MAIN */
 
 .main {
-  margin-left: 255px;
-  width: calc(100% - 255px);
-  padding: 28px 38px 50px;
+  margin-left:245px;
+  width:calc(100% - 245px);
+  padding:27px 35px;
+  max-width:1600px;
 }
 
 .topbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 32px;
-  gap: 15px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:15px;
+  margin-bottom:30px;
 }
 
-.greeting h1 {
-  font-family: 'Manrope', sans-serif;
-  font-size: 26px;
-  font-weight: 800;
+.topbar h1 {font-size:24px}
+.topbar p {font-size:12px;color:var(--muted);margin-top:5px}
+
+.top-actions {display:flex;gap:10px;align-items:center}
+
+.theme-toggle,.menu-toggle {
+  border:1px solid var(--border);
+  background:var(--surface);
+  color:var(--text);
+  padding:10px 14px;
+  border-radius:10px;
+  font-size:13px;
 }
 
-.greeting p {
-  color: var(--muted);
-  font-size: 13px;
-  margin-top: 5px;
-}
+.menu-toggle {display:none}
 
-.top-right {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-
-.date-pill {
-  background: white;
-  border: 1px solid var(--border);
-  border-radius: 10px;
-  padding: 10px 14px;
-  color: #617267;
-  font-size: 12px;
-}
-
-.avatar {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  background: #dcebd8;
-  display: grid;
-  place-items: center;
-  font-weight: 800;
-  color: var(--green);
-}
-
-.menu-toggle {
-  display: none;
-  background: white;
-  padding: 9px 12px;
-  border-radius: 9px;
-  font-size: 20px;
-}
-
-/* SECTIONS */
-
-.page-section {
-  display: none;
-  animation: appear .3s ease;
-}
-
-.page-section.active {
-  display: block;
-}
-
-@keyframes appear {
-  from {opacity: 0; transform: translateY(6px);}
-  to {opacity: 1; transform: translateY(0);}
-}
-
-.section-heading {
-  margin-bottom: 22px;
-}
-
-.section-heading h2 {
-  font-family: 'Manrope', sans-serif;
-  font-size: 21px;
-  font-weight: 800;
-}
-
-.section-heading p {
-  color: var(--muted);
-  font-size: 13px;
-  margin-top: 5px;
-}
-
-/* HERO */
+.page {display:none}
+.page.active {display:block}
 
 .hero {
-  background: linear-gradient(110deg, #1e5e3b, #397c4d);
-  border-radius: 20px;
-  padding: 30px 32px;
-  color: white;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  min-height: 190px;
-  margin-bottom: 25px;
-  overflow: hidden;
-  position: relative;
+  background:linear-gradient(115deg,#174d38,#287d55);
+  color:white;
+  padding:32px;
+  border-radius:19px;
+  margin-bottom:23px;
+  position:relative;
+  overflow:hidden;
 }
 
-.hero::after {
-  content: "🌱";
-  position: absolute;
-  right: 50px;
-  bottom: -28px;
-  font-size: 145px;
-  opacity: .13;
+.hero:after {
+  content:"🌱";
+  position:absolute;
+  right:45px;
+  top:15px;
+  font-size:105px;
+  opacity:.15;
 }
 
-.hero-content {
-  position: relative;
-  z-index: 1;
-  max-width: 500px;
-}
-
+.hero h2 {font-size:27px;margin-bottom:9px}
+.hero p {font-size:13px;line-height:1.8;max-width:550px;color:#dcefe4}
 .hero-tag {
-  display: inline-block;
-  background: rgba(255,255,255,.15);
-  border: 1px solid rgba(255,255,255,.18);
-  border-radius: 30px;
-  padding: 6px 11px;
-  font-size: 10px;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  margin-bottom: 14px;
+  display:inline-block;
+  background:rgba(255,255,255,.15);
+  padding:7px 12px;
+  border-radius:20px;
+  font-size:10px;
+  margin-bottom:15px;
+  letter-spacing:1px;
 }
 
-.hero h2 {
-  font-family: 'Manrope', sans-serif;
-  font-size: 25px;
-  margin-bottom: 9px;
+.section-title {
+  font-size:17px;
+  margin:25px 0 15px;
 }
 
-.hero p {
-  color: #d5e8d9;
-  font-size: 13px;
-  line-height: 1.7;
+.grid {
+  display:grid;
+  grid-template-columns:repeat(4,minmax(0,1fr));
+  gap:15px;
 }
 
-.hero button {
-  background: #e4f1d9;
-  color: var(--green-dark);
-  padding: 11px 17px;
-  border-radius: 9px;
-  font-weight: 700;
-  font-size: 12px;
-  margin-top: 18px;
+.grid.two {grid-template-columns:repeat(2,minmax(0,1fr))}
+.grid.three {grid-template-columns:repeat(3,minmax(0,1fr))}
+
+.card {
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:14px;
+  padding:19px;
+  box-shadow:var(--shadow);
+  min-width:0;
 }
 
-.hero button:hover {
-  background: white;
+.card-icon {font-size:23px;margin-bottom:13px}
+.card h3 {font-size:14px;margin-bottom:8px}
+.card p {font-size:12px;color:var(--muted);line-height:1.7}
+
+.metric {
+  font-size:25px;
+  font-weight:800;
+  margin:9px 0 5px;
 }
 
-/* CARDS */
+.small {font-size:11px;color:var(--muted)}
+.positive {color:var(--primary)}
+.warning {color:#d39a42}
 
-.stats-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 16px;
-  margin-bottom: 26px;
+.progress {
+  height:7px;
+  background:var(--surface2);
+  border-radius:10px;
+  overflow:hidden;
+  margin-top:12px;
+}
+.progress span {
+  display:block;
+  height:100%;
+  background:var(--primary);
+  border-radius:10px;
 }
 
-.stat-card, .card {
-  background: white;
-  border: 1px solid var(--border);
-  border-radius: 16px;
-  padding: 20px;
-  box-shadow: var(--shadow);
+.panel {
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:15px;
+  padding:20px;
+  margin-top:20px;
 }
 
-.stat-top {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.stat-icon {
-  width: 39px;
-  height: 39px;
-  border-radius: 11px;
-  display: grid;
-  place-items: center;
-  font-size: 19px;
-}
-
-.stat-card p {
-  color: var(--muted);
-  font-size: 12px;
-  margin-top: 15px;
-}
-
-.stat-card h3 {
-  font-family: 'Manrope', sans-serif;
-  font-size: 25px;
-  margin-top: 4px;
-}
-
-.stat-card small {
-  color: var(--green);
-  font-size: 11px;
-  display: block;
-  margin-top: 7px;
-}
-
-/* DASHBOARD GRID */
-
-.dashboard-grid {
-  display: grid;
-  grid-template-columns: 1.35fr 1fr;
-  gap: 18px;
-  margin-bottom: 22px;
-}
-
-.card-heading {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 18px;
-  gap: 10px;
-}
-
-.card-heading h3 {
-  font-family: 'Manrope', sans-serif;
-  font-size: 15px;
-}
-
-.card-heading span {
-  font-size: 11px;
-  color: var(--muted);
-}
-
-.activity-chart {
-  height: 175px;
-  display: flex;
-  align-items: end;
-  justify-content: space-around;
-  gap: 13px;
-  padding: 12px 4px 0;
-  border-bottom: 1px solid var(--border);
-}
-
-.chart-column {
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: end;
-  align-items: center;
-  flex: 1;
-  gap: 9px;
-}
-
-.chart-bar {
-  width: 65%;
-  max-width: 35px;
-  border-radius: 7px 7px 2px 2px;
-  background: #a8cda8;
-  transition: .3s;
-}
-
-.chart-bar:hover {
-  background: var(--green);
-}
-
-.chart-column small {
-  color: var(--muted);
-  font-size: 10px;
-  margin-bottom: -20px;
-}
-
-.advisory-item {
-  display: flex;
-  gap: 12px;
-  padding: 12px 0;
-  border-bottom: 1px solid var(--border);
-}
-
-.advisory-item:last-child {
-  border: none;
-}
-
-.advisory-icon {
-  width: 37px;
-  height: 37px;
-  flex-shrink: 0;
-  border-radius: 11px;
-  display: grid;
-  place-items: center;
-  background: #edf5e9;
-  font-size: 18px;
-}
-
-.advisory-item h4 {
-  font-size: 12px;
-  margin-bottom: 4px;
-}
-
-.advisory-item p {
-  color: var(--muted);
-  font-size: 11px;
-  line-height: 1.5;
-}
-
-/* MARKET */
-
-.market-tools {
-  display: flex;
-  gap: 12px;
-  flex-wrap: wrap;
-  margin-bottom: 17px;
-}
-
-.search-wrap {
-  position: relative;
-  flex: 1;
-  min-width: 220px;
-}
-
-.search-wrap span {
-  position: absolute;
-  left: 14px;
-  top: 50%;
-  transform: translateY(-50%);
-  color: #819087;
-}
-
-.search-wrap input {
-  width: 100%;
-  padding: 13px 15px 13px 42px;
-  border: 1px solid var(--border);
-  background: white;
-  border-radius: 10px;
-  outline: none;
-  font-size: 13px;
-}
-
-.search-wrap input:focus, .market-tools select:focus,
-.form-control:focus {
-  border-color: var(--green);
-}
-
-.market-tools select {
-  border: 1px solid var(--border);
-  background: white;
-  padding: 12px 15px;
-  border-radius: 10px;
-  outline: none;
-  color: var(--text);
-  min-width: 145px;
-  font-size: 12px;
-}
-
-.table-wrap {
-  overflow-x: auto;
-}
+.panel h3 {font-size:15px;margin-bottom:15px}
 
 table {
-  width: 100%;
-  border-collapse: collapse;
-  min-width: 650px;
+  width:100%;
+  border-collapse:collapse;
+  font-size:12px;
+  min-width:550px;
+}
+
+th,td {
+  text-align:left;
+  padding:13px 10px;
+  border-bottom:1px solid var(--border);
 }
 
 th {
-  background: #f7f9f6;
-  color: #87938b;
-  text-align: left;
-  font-size: 10px;
-  text-transform: uppercase;
-  letter-spacing: .7px;
-  padding: 14px 15px;
+  color:var(--muted);
+  font-size:10px;
+  text-transform:uppercase;
+  letter-spacing:.7px;
 }
 
-td {
-  padding: 15px;
-  border-bottom: 1px solid #edf0ed;
-  font-size: 12px;
+.table-wrap {overflow-x:auto}
+
+.tag {
+  display:inline-block;
+  padding:5px 9px;
+  border-radius:20px;
+  background:var(--primary2);
+  color:var(--primary);
+  font-size:10px;
+  font-weight:700;
 }
 
-td strong {
-  font-size: 12px;
+.search-row {
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+  margin-bottom:17px;
 }
 
-.muted {
-  color: var(--muted);
+input,select {
+  background:var(--surface);
+  color:var(--text);
+  border:1px solid var(--border);
+  border-radius:9px;
+  padding:11px 12px;
+  outline:none;
+  min-width:0;
 }
 
-.trend-up {
-  color: var(--green);
-  font-weight: 700;
+input:focus,select:focus {border-color:var(--primary)}
+.search-row input {flex:1;min-width:180px}
+
+.btn {
+  border:none;
+  background:var(--primary);
+  color:white;
+  padding:11px 16px;
+  border-radius:9px;
+  font-size:12px;
+  font-weight:700;
 }
 
-.trend-down {
-  color: var(--red);
-  font-weight: 700;
+.btn.secondary {
+  background:var(--surface2);
+  color:var(--text);
+  border:1px solid var(--border);
 }
 
-.price-note {
-  margin-top: 13px;
-  color: var(--muted);
-  font-size: 10px;
-  line-height: 1.6;
-}
+.btn.danger {background:#b94b4b}
 
-.empty-state {
-  text-align: center;
-  color: var(--muted);
-  padding: 30px;
-}
-
-/* FARM FEATURES */
-
-.feature-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 16px;
-}
-
-.feature-card {
-  background: white;
-  border: 1px solid var(--border);
-  border-radius: 15px;
-  padding: 20px;
-  transition: .2s;
-}
-
-.feature-card:hover {
-  transform: translateY(-3px);
-  box-shadow: var(--shadow);
+.feature {
+  display:flex;
+  gap:14px;
+  align-items:flex-start;
 }
 
 .feature-icon {
-  font-size: 27px;
-  margin-bottom: 15px;
+  font-size:24px;
+  background:var(--primary2);
+  padding:11px;
+  border-radius:11px;
 }
 
-.feature-card h3 {
-  font-size: 14px;
-  margin-bottom: 8px;
+.feature-content {flex:1}
+.feature-content h3 {margin:3px 0 7px}
+
+.switch {
+  position:relative;
+  width:43px;
+  height:24px;
+  flex-shrink:0;
 }
 
-.feature-card p {
-  color: var(--muted);
-  font-size: 11px;
-  line-height: 1.7;
-  min-height: 55px;
+.switch input {display:none}
+
+.slider {
+  position:absolute;
+  inset:0;
+  background:#9ba9a1;
+  border-radius:20px;
+  transition:.2s;
+  cursor:pointer;
 }
 
-.feature-status {
-  margin-top: 15px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  font-size: 11px;
+.slider:before {
+  content:"";
+  position:absolute;
+  width:18px;height:18px;
+  left:3px;top:3px;
+  border-radius:50%;
+  background:white;
+  transition:.2s;
 }
 
-.status {
-  padding: 5px 9px;
-  border-radius: 20px;
-  background: #eaf4eb;
-  color: var(--green);
-  font-weight: 700;
+.switch input:checked + .slider {background:var(--primary)}
+.switch input:checked + .slider:before {transform:translateX(19px)}
+
+.transaction-form {
+  display:grid;
+  grid-template-columns:repeat(4,minmax(0,1fr));
+  gap:10px;
+  margin-bottom:20px;
 }
 
-.status.off {
-  background: #f2f1ed;
-  color: #777;
+.transaction-form input,.transaction-form select {width:100%}
+
+.chart {
+  display:flex;
+  align-items:flex-end;
+  gap:12px;
+  height:150px;
+  padding-top:15px;
 }
 
-.control-button {
-  background: var(--green);
-  color: white;
-  padding: 8px 12px;
-  border-radius: 8px;
-  font-size: 11px;
-  font-weight: 700;
+.bar-wrap {
+  flex:1;
+  height:100%;
+  display:flex;
+  flex-direction:column;
+  justify-content:flex-end;
+  align-items:center;
+  gap:7px;
 }
 
-.control-button:hover {
-  background: var(--green-dark);
+.bar {
+  width:65%;
+  max-width:45px;
+  background:var(--primary);
+  border-radius:6px 6px 0 0;
+  min-height:5px;
 }
 
-/* FINANCE */
+.bar-wrap span {font-size:10px;color:var(--muted)}
 
-.finance-summary {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 15px;
-  margin-bottom: 20px;
+.resource-link {
+  display:block;
+  color:var(--primary);
+  font-size:12px;
+  font-weight:700;
+  text-decoration:none;
+  margin-top:12px;
 }
+.resource-link:hover {text-decoration:underline}
 
-.finance-box {
-  background: white;
-  border: 1px solid var(--border);
-  border-radius: 14px;
-  padding: 19px;
+.notice {
+  background:var(--surface2);
+  padding:13px;
+  border-radius:10px;
+  color:var(--muted);
+  font-size:11px;
+  line-height:1.7;
+  margin-top:15px;
 }
-
-.finance-box p {
-  font-size: 11px;
-  color: var(--muted);
-}
-
-.finance-box h3 {
-  font-size: 23px;
-  margin-top: 8px;
-}
-
-.finance-layout {
-  display: grid;
-  grid-template-columns: 1fr 1.4fr;
-  gap: 18px;
-}
-
-.finance-form {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-
-.form-control {
-  width: 100%;
-  padding: 12px;
-  border: 1px solid var(--border);
-  border-radius: 9px;
-  outline: none;
-  font-size: 12px;
-  background: white;
-}
-
-.primary-button {
-  background: var(--green);
-  color: white;
-  padding: 12px;
-  border-radius: 9px;
-  font-weight: 700;
-  font-size: 12px;
-}
-
-.secondary-button {
-  background: #edf4ed;
-  color: var(--green-dark);
-  padding: 10px 13px;
-  border-radius: 9px;
-  font-size: 11px;
-  font-weight: 700;
-}
-
-.transaction {
-  display: flex;
-  justify-content: space-between;
-  gap: 10px;
-  padding: 13px 0;
-  border-bottom: 1px solid var(--border);
-  font-size: 12px;
-}
-
-.transaction small {
-  color: var(--muted);
-  display: block;
-  margin-top: 4px;
-}
-
-.income {
-  color: var(--green);
-  font-weight: 700;
-}
-
-.expense {
-  color: var(--red);
-  font-weight: 700;
-}
-
-/* RESOURCES */
-
-.resource-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 15px;
-}
-
-.resource {
-  display: flex;
-  gap: 14px;
-  padding: 18px;
-  background: white;
-  border: 1px solid var(--border);
-  border-radius: 14px;
-  align-items: center;
-}
-
-.resource-icon {
-  width: 42px;
-  height: 42px;
-  flex-shrink: 0;
-  border-radius: 12px;
-  display: grid;
-  place-items: center;
-  background: #edf5e9;
-  font-size: 20px;
-}
-
-.resource h3 {
-  font-size: 13px;
-}
-
-.resource p {
-  font-size: 10px;
-  color: var(--muted);
-  margin-top: 4px;
-}
-
-.resource a {
-  color: var(--green);
-  font-size: 11px;
-  font-weight: 700;
-  display: inline-block;
-  margin-top: 7px;
-  text-decoration: none;
-}
-
-.resource a:hover {
-  text-decoration: underline;
-}
-
-/* FOOTER */
 
 .footer {
-  border-top: 1px solid var(--border);
-  margin-top: 40px;
-  padding-top: 20px;
-  display: flex;
-  justify-content: space-between;
-  gap: 15px;
-  color: var(--muted);
-  font-size: 10px;
-  flex-wrap: wrap;
+  text-align:center;
+  padding:35px 0 10px;
+  color:var(--muted);
+  font-size:11px;
 }
 
-/* RESPONSIVE */
-
-@media(max-width: 1050px) {
-  .stats-grid {grid-template-columns: repeat(2, 1fr);}
-  .feature-grid {grid-template-columns: repeat(2, 1fr);}
+.empty {
+  text-align:center;
+  padding:25px;
+  color:var(--muted);
+  font-size:12px;
 }
 
-@media(max-width: 760px) {
+@media(max-width:1050px) {
+  .grid {grid-template-columns:repeat(2,minmax(0,1fr))}
+  .grid.three {grid-template-columns:repeat(2,minmax(0,1fr))}
+  .transaction-form {grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+
+@media(max-width:760px) {
   .sidebar {
-    transform: translateX(-100%);
+    transform:translateX(-100%);
+    transition:transform .25s;
+    box-shadow:var(--shadow);
   }
-
-  .sidebar.open {
-    transform: translateX(0);
-  }
-
+  .sidebar.open {transform:translateX(0)}
   .main {
-    margin-left: 0;
-    width: 100%;
-    padding: 20px 16px 35px;
+    margin-left:0;
+    width:100%;
+    padding:20px 16px;
   }
-
-  .menu-toggle {
-    display: block;
-  }
-
-  .topbar {
-    align-items: flex-start;
-  }
-
-  .greeting h1 {
-    font-size: 20px;
-  }
-
-  .date-pill {
-    display: none;
-  }
-
-  .hero {
-    padding: 24px;
-  }
-
-  .hero h2 {
-    font-size: 21px;
-  }
-
-  .dashboard-grid, .finance-layout {
-    grid-template-columns: 1fr;
-  }
-
-  .finance-summary {
-    grid-template-columns: 1fr;
-  }
-
-  .resource-grid {
-    grid-template-columns: 1fr;
-  }
+  .menu-toggle {display:block}
+  .topbar h1 {font-size:19px}
+  .hero {padding:25px 20px}
+  .hero h2 {font-size:23px}
+  .hero:after {right:10px;font-size:75px}
 }
 
-@media(max-width: 480px) {
-  .stats-grid, .feature-grid {
-    grid-template-columns: 1fr 1fr;
-    gap: 10px;
-  }
-
-  .stat-card {
-    padding: 14px;
-  }
-
-  .stat-card h3 {
-    font-size: 20px;
-  }
-
-  .feature-card {
-    padding: 14px;
-  }
-
-  .feature-card p {
-    min-height: 80px;
-  }
-
-  .avatar {
-    width: 35px;
-    height: 35px;
-  }
+@media(max-width:480px) {
+  .grid,.grid.two,.grid.three {grid-template-columns:1fr}
+  .transaction-form {grid-template-columns:1fr}
+  .topbar {align-items:flex-start}
+  .top-actions {gap:5px}
+  .theme-toggle {padding:9px;font-size:11px}
+  .hero:after {display:none}
 }
 </style>
 </head>
 
 <body>
-
 <div class="app">
 
-<!-- SIDEBAR -->
 <aside class="sidebar" id="sidebar">
-
   <div class="brand">
     <div class="brand-icon">🌿</div>
     <div>
       <h2>Agri Sakhi</h2>
-      <p>Smart farming platform</p>
+      <p>Your Digital Farming Companion</p>
     </div>
   </div>
 
   <div class="nav-label">MAIN MENU</div>
 
-  <button class="nav-link active" data-page="dashboard">
-    <span>⌂</span> Dashboard
-  </button>
+  <div class="nav-item active" data-page="dashboard"><span class="nav-icon">⌂</span> Dashboard</div>
+  <div class="nav-item" data-page="mandi"><span class="nav-icon">📊</span> Mandi Prices</div>
+  <div class="nav-item" data-page="advisory"><span class="nav-icon">🌦️</span> Crop Advisory</div>
+  <div class="nav-item" data-page="management"><span class="nav-icon">🚿</span> Farm Management</div>
+  <div class="nav-item" data-page="sustainability"><span class="nav-icon">♻️</span> Sustainability</div>
+  <div class="nav-item" data-page="finance"><span class="nav-icon">₹</span> Finance Tracker</div>
+  <div class="nav-item" data-page="resources"><span class="nav-icon">📚</span> Farmer Resources</div>
 
-  <button class="nav-link" data-page="markets">
-    <span>📈</span> Mandi Prices
-  </button>
-
-  <button class="nav-link" data-page="advisory">
-    <span>☀️</span> Crop Advisory
-  </button>
-
-  <button class="nav-link" data-page="farm">
-    <span>🌱</span> Farm Management
-  </button>
-
-  <button class="nav-link" data-page="sustainability">
-    <span>♻️</span> Sustainability
-  </button>
-
-  <div class="nav-label">YOUR FARM</div>
-
-  <button class="nav-link" data-page="finance">
-    <span>💰</span> Finance Tracker
-  </button>
-
-  <button class="nav-link" data-page="resources">
-    <span>📚</span> Farmer Resources
-  </button>
-
-  <div class="sidebar-bottom">
-    <div style="font-size:21px;margin-bottom:8px">🌾</div>
-    <strong style="font-size:12px">Growing a better tomorrow</strong>
-    <p>Technology, sustainability and knowledge for smarter agriculture.</p>
+  <div class="sidebar-footer">
+    <strong>🌱 Agri Sakhi</strong><br>
+    The Intelligent Farm Guardian<br>
+    Technology for sustainable agriculture.
   </div>
-
 </aside>
 
-<!-- MAIN CONTENT -->
 <main class="main">
 
 <header class="topbar">
   <div style="display:flex;align-items:center;gap:12px">
     <button class="menu-toggle" id="menuToggle">☰</button>
-    <div class="greeting">
+    <div>
       <h1 id="pageTitle">Dashboard</h1>
-      <p id="pageSubtitle">Your farm at a glance. Make every decision count.</p>
+      <p>Your farm, your data, your decisions.</p>
     </div>
   </div>
-
-  <div class="top-right">
-    <div class="date-pill" id="todayDate"></div>
-    <div class="avatar">AS</div>
+  <div class="top-actions">
+    <button class="theme-toggle" id="themeToggle">🌙 Dark Mode</button>
   </div>
 </header>
 
 <!-- DASHBOARD -->
-<section class="page-section active" id="dashboard">
-
+<section class="page active" id="dashboard">
   <div class="hero">
-    <div class="hero-content">
-      <span class="hero-tag">THE INTELLIGENT FARM GUARDIAN</span>
-      <h2>Your Digital Farming Companion</h2>
-      <p>Bringing together market intelligence, crop insights, resource management and sustainable farming — all in one place.</p>
-      <button onclick="showPage('markets')">Explore Market Prices →</button>
-    </div>
+    <span class="hero-tag">THE INTELLIGENT FARM GUARDIAN</span>
+    <h2>Growing smarter, together.</h2>
+    <p>Agri Sakhi brings agricultural information, resource management and sustainable farming concepts together in one digital platform.</p>
   </div>
 
-  <div class="stats-grid">
-
-    <div class="stat-card">
-      <div class="stat-top">
-        <span class="stat-icon" style="background:#eaf4e9">🌾</span>
-        <span style="color:var(--green);font-size:11px">Farm</span>
-      </div>
-      <p>Farm Monitoring</p>
-      <h3>Active</h3>
-      <small>Management overview</small>
-    </div>
-
-    <div class="stat-card">
-      <div class="stat-top">
-        <span class="stat-icon" style="background:#fff3df">💧</span>
-        <span style="color:var(--orange);font-size:11px">Water</span>
-      </div>
-      <p>Irrigation Systems</p>
-      <h3 id="irrigationCount">0 / 2</h3>
-      <small>Systems switched on</small>
-    </div>
-
-    <div class="stat-card">
-      <div class="stat-top">
-        <span class="stat-icon" style="background:#eaf0fa">📊</span>
-        <span style="color:#5477ad;font-size:11px">Markets</span>
-      </div>
-      <p>Markets Listed</p>
-      <h3>6</h3>
-      <small>Market comparison</small>
-    </div>
-
-    <div class="stat-card">
-      <div class="stat-top">
-        <span class="stat-icon" style="background:#f4eefa">♻️</span>
-        <span style="color:#8a68a8;font-size:11px">Green</span>
-      </div>
-      <p>Sustainability Tools</p>
-      <h3>6</h3>
-      <small>Resource-smart solutions</small>
-    </div>
-
-  </div>
-
-  <div class="dashboard-grid">
-
+  <div class="grid">
     <div class="card">
-      <div class="card-heading">
-        <h3>Weekly Farm Activity</h3>
-        <span>Illustrative overview</span>
-      </div>
-
-      <div class="activity-chart">
-        <div class="chart-column">
-          <div class="chart-bar" style="height:40%"></div>
-          <small>Mon</small>
-        </div>
-        <div class="chart-column">
-          <div class="chart-bar" style="height:68%"></div>
-          <small>Tue</small>
-        </div>
-        <div class="chart-column">
-          <div class="chart-bar" style="height:52%"></div>
-          <small>Wed</small>
-        </div>
-        <div class="chart-column">
-          <div class="chart-bar" style="height:82%"></div>
-          <small>Thu</small>
-        </div>
-        <div class="chart-column">
-          <div class="chart-bar" style="height:60%"></div>
-          <small>Fri</small>
-        </div>
-        <div class="chart-column">
-          <div class="chart-bar" style="height:92%"></div>
-          <small>Sat</small>
-        </div>
-        <div class="chart-column">
-          <div class="chart-bar" style="height:48%"></div>
-          <small>Sun</small>
-        </div>
-      </div>
+      <div class="card-icon">🌾</div>
+      <p>Crop Intelligence</p>
+      <div class="metric">Smart</div>
+      <span class="small">Information-led decisions</span>
     </div>
-
     <div class="card">
-      <div class="card-heading">
-        <h3>Today's Crop Insights</h3>
-        <span>Quick guide</span>
-      </div>
-
-      <div class="advisory-item">
-        <div class="advisory-icon">🌧️</div>
-        <div>
-          <h4>Rainfall preparedness</h4>
-          <p>Keep drainage channels clear and monitor local weather forecasts.</p>
-        </div>
-      </div>
-
-      <div class="advisory-item">
-        <div class="advisory-icon">🌿</div>
-        <div>
-          <h4>Crop health</h4>
-          <p>Inspect leaves regularly for unusual spots or signs of pest activity.</p>
-        </div>
-      </div>
-
-      <div class="advisory-item">
-        <div class="advisory-icon">💧</div>
-        <div>
-          <h4>Water management</h4>
-          <p>Use irrigation according to crop needs and soil moisture.</p>
-        </div>
-      </div>
-
+      <div class="card-icon">💧</div>
+      <p>Water Management</p>
+      <div class="metric">Efficient</div>
+      <span class="small">Drip and sprinkler concepts</span>
+    </div>
+    <div class="card">
+      <div class="card-icon">☀️</div>
+      <p>Renewable Energy</p>
+      <div class="metric">Clean</div>
+      <span class="small">Solar and wind energy</span>
+    </div>
+    <div class="card">
+      <div class="card-icon">📈</div>
+      <p>Farm Finances</p>
+      <div class="metric">Organised</div>
+      <span class="small">Income and expense tracking</span>
     </div>
   </div>
 
-  <div class="card">
-    <div class="card-heading">
-      <h3>Explore Agri Sakhi</h3>
-      <span>Quick navigation</span>
+  <h2 class="section-title">Your Agri Sakhi overview</h2>
+  <div class="grid two">
+    <div class="panel">
+      <h3>🌱 Sustainable farming priorities</h3>
+      <p class="small">Water conservation</p>
+      <div class="progress"><span style="width:85%"></span></div>
+      <p class="small" style="margin-top:15px">Renewable energy</p>
+      <div class="progress"><span style="width:75%"></span></div>
+      <p class="small" style="margin-top:15px">Crop residue utilisation</p>
+      <div class="progress"><span style="width:65%"></span></div>
+      <p class="small" style="margin-top:15px">Smart crop monitoring</p>
+      <div class="progress"><span style="width:90%"></span></div>
+      <div class="notice">Illustrative project indicators, not measured farm performance.</div>
     </div>
-
-    <div class="feature-grid">
-
-      <div class="feature-card">
-        <div class="feature-icon">📈</div>
-        <h3>Market Intelligence</h3>
-        <p>Compare crop prices across different markets and locations.</p>
-        <button class="control-button" onclick="showPage('markets')">Explore →</button>
-      </div>
-
-      <div class="feature-card">
-        <div class="feature-icon">🌦️</div>
-        <h3>Crop Advisory</h3>
-        <p>Explore weather preparedness and crop-care guidance.</p>
-        <button class="control-button" onclick="showPage('advisory')">Explore →</button>
-      </div>
-
-      <div class="feature-card">
-        <div class="feature-icon">💰</div>
-        <h3>Farm Finances</h3>
-        <p>Record income and expenses to understand farm finances.</p>
-        <button class="control-button" onclick="showPage('finance')">Explore →</button>
-      </div>
-
+    <div class="panel">
+      <h3>💡 Today's agricultural insight</h3>
+      <h2 style="font-size:18px;margin:15px 0">Every drop counts.</h2>
+      <p class="small" style="line-height:1.9">Drip irrigation delivers water near plant roots. It can help reduce unnecessary water loss when properly designed and maintained.</p>
+      <div class="notice">Explore Farm Management to learn about water-efficient irrigation methods.</div>
     </div>
   </div>
-
 </section>
 
-<!-- MANDI PRICES -->
-<section class="page-section" id="markets">
-
-  <div class="section-heading">
-    <h2>Mandi Price Intelligence</h2>
-    <p>Search, compare and explore crop prices across different market locations.</p>
+<!-- MANDI -->
+<section class="page" id="mandi">
+  <div class="hero">
+    <span class="hero-tag">MARKET INTELLIGENCE</span>
+    <h2>Know your market.</h2>
+    <p>Explore illustrative crop prices across sample markets and search for agricultural commodities.</p>
   </div>
 
-  <div class="stats-grid">
-    <div class="stat-card">
-      <div class="stat-icon" style="background:#eaf4e9">🌾</div>
-      <p>Crops Available</p>
-      <h3>3</h3>
-      <small>Wheat, rice and more</small>
-    </div>
-
-    <div class="stat-card">
-      <div class="stat-icon" style="background:#fff3df">🏪</div>
-      <p>Market Locations</p>
-      <h3>6</h3>
-      <small>Across Delhi NCR</small>
-    </div>
-
-    <div class="stat-card">
-      <div class="stat-icon" style="background:#eaf0fa">🔎</div>
-      <p>Price Comparison</p>
-      <h3>Easy</h3>
-      <small>Search and filter</small>
-    </div>
-
-    <div class="stat-card">
-      <div class="stat-icon" style="background:#f4eefa">📊</div>
-      <p>Unit</p>
-      <h3>₹ / q</h3>
-      <small>Per quintal</small>
-    </div>
+  <div class="search-row">
+    <input id="marketSearch" placeholder="Search crop, market or location...">
+    <select id="cropFilter">
+      <option value="">All crops</option>
+      <option>Wheat</option>
+      <option>Rice</option>
+      <option>Tomato</option>
+      <option>Potato</option>
+      <option>Mustard</option>
+      <option>Onion</option>
+    </select>
   </div>
 
-  <div class="card">
-    <div class="card-heading">
-      <h3>Find a Mandi</h3>
-      <span>Market directory</span>
-    </div>
-
-    <div class="market-tools">
-
-      <div class="search-wrap">
-        <span>⌕</span>
-        <input
-          type="search"
-          id="marketSearch"
-          placeholder="Search crop, market or location..."
-          aria-label="Search mandi prices"
-        >
-      </div>
-
-      <select id="cropFilter" aria-label="Filter by crop">
-        <option value="all">All Crops</option>
-        <option value="Wheat">Wheat</option>
-        <option value="Rice">Rice</option>
-        <option value="Mustard">Mustard</option>
-        <option value="Potato">Potato</option>
-        <option value="Tomato">Tomato</option>
-        <option value="Onion">Onion</option>
-      </select>
-
-    </div>
-
+  <div class="panel">
+    <h3>📊 Mandi price explorer</h3>
     <div class="table-wrap">
       <table>
         <thead>
           <tr>
-            <th>Crop</th>
-            <th>Market</th>
-            <th>Location</th>
-            <th>Min Price</th>
-            <th>Max Price</th>
-            <th>Modal Price</th>
-            <th>Trend</th>
+            <th>Crop</th><th>Market</th><th>Location</th>
+            <th>Price (₹/quintal)</th><th>Trend</th>
           </tr>
         </thead>
-
         <tbody id="marketRows"></tbody>
       </table>
     </div>
-
-    <p class="price-note">
-      Market prices shown are illustrative prototype values in ₹ per quintal.
-      They demonstrate the comparison interface and are not verified live mandi quotations.
-    </p>
+    <div class="notice">Prototype market data: prices shown are illustrative sample values, not verified live market quotations. Check official market sources before making selling decisions.</div>
   </div>
-
 </section>
 
-<!-- CROP ADVISORY -->
-<section class="page-section" id="advisory">
-
-  <div class="section-heading">
-    <h2>Weather & Crop Advisory</h2>
-    <p>Practical guidance to help farmers prepare for changing conditions.</p>
+<!-- ADVISORY -->
+<section class="page" id="advisory">
+  <div class="hero">
+    <span class="hero-tag">CROP INTELLIGENCE</span>
+    <h2>Plan with knowledge.</h2>
+    <p>General agricultural guidance to support informed crop management.</p>
   </div>
 
-  <div class="hero" style="background:linear-gradient(110deg,#315e79,#548c9e)">
-    <div class="hero-content">
-      <span class="hero-tag">SMART CROP MANAGEMENT</span>
-      <h2>Plan ahead. Farm smarter.</h2>
-      <p>Weather awareness and timely crop-care decisions can help reduce agricultural risks.</p>
+  <div class="grid three">
+    <div class="card">
+      <div class="card-icon">🌾</div>
+      <h3>Wheat</h3>
+      <p>Monitor soil moisture, maintain appropriate spacing and observe crops regularly for signs of disease.</p>
+      <span class="tag">Rabi crop</span>
     </div>
-  </div>
-
-  <div class="feature-grid">
-
-    <div class="feature-card">
-      <div class="feature-icon">🌡️</div>
-      <h3>Extreme Heat Preparedness</h3>
-      <p>Monitor official heat alerts, check soil moisture and schedule irrigation according to crop requirements.</p>
+    <div class="card">
+      <div class="card-icon">🍚</div>
+      <h3>Rice</h3>
+      <p>Use suitable water-management practices and select varieties adapted to local conditions.</p>
+      <span class="tag">Kharif crop</span>
     </div>
-
-    <div class="feature-card">
-      <div class="feature-icon">🌧️</div>
-      <h3>Heavy Rainfall Preparedness</h3>
-      <p>Maintain drainage channels, protect stored produce and monitor rainfall warnings.</p>
+    <div class="card">
+      <div class="card-icon">🍅</div>
+      <h3>Tomato</h3>
+      <p>Monitor plant health, ensure suitable drainage and check for common pests regularly.</p>
+      <span class="tag">Vegetable crop</span>
     </div>
-
-    <div class="feature-card">
-      <div class="feature-icon">🐛</div>
-      <h3>Pest Monitoring</h3>
-      <p>Inspect crops regularly and record changes in pest activity for timely intervention.</p>
+    <div class="card">
+      <div class="card-icon">🧅</div>
+      <h3>Onion</h3>
+      <p>Good drainage and appropriate irrigation are important throughout crop development.</p>
+      <span class="tag">Vegetable crop</span>
     </div>
-
-    <div class="feature-card">
-      <div class="feature-icon">🌱</div>
-      <h3>Soil Health</h3>
-      <p>Use soil testing and crop-specific nutrient recommendations to support healthy growth.</p>
+    <div class="card">
+      <div class="card-icon">🥔</div>
+      <h3>Potato</h3>
+      <p>Monitor soil conditions and watch for signs of disease or unusual plant growth.</p>
+      <span class="tag">Rabi crop</span>
     </div>
-
-    <div class="feature-card">
-      <div class="feature-icon">💧</div>
-      <h3>Water Conservation</h3>
-      <p>Consider drip irrigation and suitable watering schedules to reduce unnecessary water use.</p>
-    </div>
-
-    <div class="feature-card">
-      <div class="feature-icon">📷</div>
-      <h3>Crop Observation</h3>
-      <p>Use regular visual monitoring to identify changes in crop condition and growth.</p>
-    </div>
-
-  </div>
-
-  <div class="card" style="margin-top:20px">
-    <div class="card-heading">
-      <h3>Official Information Sources</h3>
-      <span>External resources</span>
-    </div>
-
-    <div class="resource-grid">
-      <div class="resource">
-        <div class="resource-icon">🌦️</div>
-        <div>
-          <h3>India Meteorological Department</h3>
-          <p>Official weather forecasts and warnings</p>
-          <a href="https://mausam.imd.gov.in/" target="_blank" rel="noopener">Visit IMD →</a>
-        </div>
-      </div>
-
-      <div class="resource">
-        <div class="resource-icon">🌾</div>
-        <div>
-          <h3>Indian Council of Agricultural Research</h3>
-          <p>Agricultural research and knowledge</p>
-          <a href="https://icar.org.in/" target="_blank" rel="noopener">Visit ICAR →</a>
-        </div>
-      </div>
+    <div class="card">
+      <div class="card-icon">🌻</div>
+      <h3>Mustard</h3>
+      <p>Maintain suitable soil moisture and monitor crop growth during flowering.</p>
+      <span class="tag">Rabi crop</span>
     </div>
   </div>
 
+  <div class="notice">These are general educational pointers, not personalised or live crop prescriptions. Consult local agricultural experts for field-specific advice.</div>
 </section>
 
 <!-- FARM MANAGEMENT -->
-<section class="page-section" id="farm">
-
-  <div class="section-heading">
-    <h2>Farm Management</h2>
-    <p>Explore systems designed to support efficient resource management.</p>
+<section class="page" id="management">
+  <div class="hero">
+    <span class="hero-tag">SMART FARM MANAGEMENT</span>
+    <h2>Manage resources wisely.</h2>
+    <p>Explore Agri Sakhi's digital controls and proposed farm-monitoring features.</p>
   </div>
 
-  <div class="feature-grid">
-
-    <div class="feature-card">
-      <div class="feature-icon">💧</div>
-      <h3>Drip Irrigation</h3>
-      <p>Delivers water near plant roots through a network of pipes and emitters.</p>
-      <div class="feature-status">
-        <span class="status off" id="dripStatus">OFF</span>
-        <button class="control-button" onclick="toggleIrrigation('drip')">Toggle</button>
+  <div class="grid two">
+    <div class="card">
+      <div class="feature">
+        <div class="feature-icon">💧</div>
+        <div class="feature-content">
+          <h3>Drip Irrigation</h3>
+          <p>Targeted water delivery near plant roots.</p>
+          <p id="dripStatus" class="positive" style="margin-top:9px">Demo status: OFF</p>
+        </div>
+        <label class="switch">
+          <input type="checkbox" id="dripSwitch">
+          <span class="slider"></span>
+        </label>
       </div>
     </div>
 
-    <div class="feature-card">
-      <div class="feature-icon">🚿</div>
-      <h3>Sprinkler Irrigation</h3>
-      <p>Distributes water through sprinklers to simulate rainfall over crops.</p>
-      <div class="feature-status">
-        <span class="status off" id="sprinklerStatus">OFF</span>
-        <button class="control-button" onclick="toggleIrrigation('sprinkler')">Toggle</button>
+    <div class="card">
+      <div class="feature">
+        <div class="feature-icon">🚿</div>
+        <div class="feature-content">
+          <h3>Sprinkler Irrigation</h3>
+          <p>Water distribution through sprinkler systems.</p>
+          <p id="sprinklerStatus" class="positive" style="margin-top:9px">Demo status: OFF</p>
+        </div>
+        <label class="switch">
+          <input type="checkbox" id="sprinklerSwitch">
+          <span class="slider"></span>
+        </label>
       </div>
     </div>
 
-    <div class="feature-card">
-      <div class="feature-icon">📷</div>
-      <h3>Monitoring Camera</h3>
-      <p>Designed for visual observation of farm conditions and crop growth.</p>
-      <div class="feature-status">
-        <span class="status off" id="cameraStatus">NOT CONNECTED</span>
-        <button class="control-button" onclick="toggleCamera()">Demo Toggle</button>
+    <div class="card">
+      <div class="feature">
+        <div class="feature-icon">📷</div>
+        <div class="feature-content">
+          <h3>Monitoring Camera</h3>
+          <p>Proposed visual monitoring of farm conditions.</p>
+          <p id="cameraStatus" class="positive" style="margin-top:9px">Demo status: OFF</p>
+        </div>
+        <label class="switch">
+          <input type="checkbox" id="cameraSwitch">
+          <span class="slider"></span>
+        </label>
       </div>
     </div>
 
-    <div class="feature-card">
-      <div class="feature-icon">🪰</div>
-      <h3>Pest Oscillator</h3>
-      <p>A concept using targeted oscillation to explore non-chemical pest deterrence.</p>
-      <div class="feature-status">
-        <span class="status">CONCEPT</span>
-        <span class="muted">Research stage</span>
+    <div class="card">
+      <div class="feature">
+        <div class="feature-icon">🐛</div>
+        <div class="feature-content">
+          <h3>Pest Oscillator</h3>
+          <p>A proposed pest-management concept using oscillation to discourage selected pests.</p>
+          <span class="tag">Concept feature</span>
+        </div>
       </div>
     </div>
 
-    <div class="feature-card">
-      <div class="feature-icon">💦</div>
-      <h3>Dew Drop Collector</h3>
-      <p>Explores collecting atmospheric moisture through condensation surfaces.</p>
-      <div class="feature-status">
-        <span class="status">CONCEPT</span>
-        <span class="muted">Research stage</span>
+    <div class="card">
+      <div class="feature">
+        <div class="feature-icon">💦</div>
+        <div class="feature-content">
+          <h3>Dew Drop Collector</h3>
+          <p>Concept for collecting atmospheric moisture through condensation.</p>
+          <span class="tag">Water conservation</span>
+        </div>
       </div>
     </div>
 
-    <div class="feature-card">
-      <div class="feature-icon">🐟</div>
-      <h3>Aquaponics</h3>
-      <p>Combines fish cultivation and soilless plant cultivation in a connected system.</p>
-      <div class="feature-status">
-        <span class="status">CONCEPT</span>
-        <span class="muted">Research stage</span>
+    <div class="card">
+      <div class="feature">
+        <div class="feature-icon">🐟</div>
+        <div class="feature-content">
+          <h3>Aquaponics</h3>
+          <p>A proposed integrated system combining fish cultivation and soilless plant growing.</p>
+          <span class="tag">Integrated farming</span>
+        </div>
       </div>
     </div>
-
   </div>
 
-  <div class="card" style="margin-top:20px">
-    <div class="card-heading">
-      <h3>System Connection</h3>
-      <span>Prototype interface</span>
-    </div>
-    <p style="font-size:12px;color:var(--muted);line-height:1.8">
-      The irrigation and camera buttons demonstrate the website interface only.
-      Actual operation requires compatible hardware, sensors, controllers and a secure
-      communication connection. No physical farm equipment is controlled by this demo.
-    </p>
-  </div>
-
+  <div class="notice">These switches are interactive demonstrations only. They do not connect to physical irrigation systems, cameras or sensors.</div>
 </section>
 
 <!-- SUSTAINABILITY -->
-<section class="page-section" id="sustainability">
-
-  <div class="section-heading">
-    <h2>Sustainable Agriculture</h2>
-    <p>Turning agricultural challenges into opportunities for resource recovery.</p>
+<section class="page" id="sustainability">
+  <div class="hero">
+    <span class="hero-tag">GREEN AGRICULTURE</span>
+    <h2>Waste less. Grow more.</h2>
+    <p>Discover concepts that connect agriculture with renewable energy, recycling and resource conservation.</p>
   </div>
 
-  <div class="hero" style="background:linear-gradient(110deg,#476a43,#7b9854)">
-    <div class="hero-content">
-      <span class="hero-tag">A CIRCULAR AGRICULTURE APPROACH</span>
-      <h2>Waste less. Grow more.</h2>
-      <p>Explore ideas that support renewable energy, water conservation and responsible resource use.</p>
+  <div class="grid three">
+    <div class="card">
+      <div class="card-icon">☀️</div>
+      <h3>Solar Panels</h3>
+      <p>Solar energy can support selected agricultural electricity needs, depending on system design.</p>
     </div>
-  </div>
-
-  <div class="feature-grid">
-
-    <div class="feature-card">
-      <div class="feature-icon">☀️</div>
-      <h3>Solar Energy</h3>
-      <p>Solar panels can convert sunlight into electricity for suitable farm applications.</p>
-      <div class="feature-status">
-        <span class="status">RENEWABLE ENERGY</span>
-      </div>
+    <div class="card">
+      <div class="card-icon">🌬️</div>
+      <h3>Wind Turbine</h3>
+      <p>Wind energy offers another renewable electricity source where wind conditions are suitable.</p>
     </div>
-
-    <div class="feature-card">
-      <div class="feature-icon">🌬️</div>
-      <h3>Wind Energy</h3>
-      <p>Wind turbines can generate electricity where wind conditions and installation permit.</p>
-      <div class="feature-status">
-        <span class="status">RENEWABLE ENERGY</span>
-      </div>
-    </div>
-
-    <div class="feature-card">
-      <div class="feature-icon">🔥</div>
+    <div class="card">
+      <div class="card-icon">🔥</div>
       <h3>Parali to Bioenergy</h3>
-      <p>Crop residues can be processed into useful bioenergy through suitable conversion methods.</p>
-      <div class="feature-status">
-        <span class="status">WASTE RECOVERY</span>
-      </div>
+      <p>Crop residues can be processed into useful bioenergy through appropriate technologies.</p>
     </div>
-
-    <div class="feature-card">
-      <div class="feature-icon">🖋️</div>
+    <div class="card">
+      <div class="card-icon">✒️</div>
       <h3>Carbon to Ink</h3>
-      <p>Explores the conversion of suitable recovered carbon materials into usable ink formulations.</p>
-      <div class="feature-status">
-        <span class="status">RESOURCE RECOVERY</span>
-      </div>
+      <p>A concept exploring the conversion of suitable recovered carbon materials into ink-related products.</p>
     </div>
-
-    <div class="feature-card">
-      <div class="feature-icon">💧</div>
+    <div class="card">
+      <div class="card-icon">💧</div>
       <h3>Water Conservation</h3>
-      <p>Efficient irrigation and moisture management can help reduce avoidable water loss.</p>
-      <div class="feature-status">
-        <span class="status">RESOURCE EFFICIENCY</span>
-      </div>
+      <p>Efficient irrigation, rainwater harvesting and careful water management can reduce wastage.</p>
     </div>
-
-    <div class="feature-card">
-      <div class="feature-icon">🐟</div>
+    <div class="card">
+      <div class="card-icon">🐠</div>
       <h3>Aquaponics</h3>
-      <p>Integrates aquaculture and plant cultivation in a water-recirculating system.</p>
-      <div class="feature-status">
-        <span class="status">INTEGRATED FARMING</span>
-      </div>
+      <p>An integrated approach that connects aquaculture and hydroponic plant production.</p>
     </div>
-
   </div>
-
 </section>
 
 <!-- FINANCE -->
-<section class="page-section" id="finance">
-
-  <div class="section-heading">
-    <h2>Farm Finance Tracker</h2>
-    <p>Keep a simple record of farm income and expenditure.</p>
+<section class="page" id="finance">
+  <div class="hero">
+    <span class="hero-tag">FARM FINANCIAL PLANNING</span>
+    <h2>Every rupee matters.</h2>
+    <p>Record income and expenses to understand farm finances more clearly.</p>
   </div>
 
-  <div class="finance-summary">
-
-    <div class="finance-box">
+  <div class="grid three">
+    <div class="card">
       <p>Total Income</p>
-      <h3 id="totalIncome" style="color:var(--green)">₹0</h3>
+      <div class="metric positive" id="totalIncome">₹0</div>
     </div>
-
-    <div class="finance-box">
+    <div class="card">
       <p>Total Expenses</p>
-      <h3 id="totalExpense" style="color:var(--red)">₹0</h3>
+      <div class="metric warning" id="totalExpense">₹0</div>
     </div>
-
-    <div class="finance-box">
+    <div class="card">
       <p>Net Balance</p>
-      <h3 id="netBalance">₹0</h3>
+      <div class="metric" id="netBalance">₹0</div>
     </div>
-
   </div>
 
-  <div class="finance-layout">
-
-    <div class="card">
-      <div class="card-heading">
-        <h3>Add Transaction</h3>
-      </div>
-
-      <form class="finance-form" id="financeForm">
-
-        <input
-          class="form-control"
-          type="text"
-          id="transactionName"
-          placeholder="Transaction description"
-          required
-        >
-
-        <input
-          class="form-control"
-          type="number"
-          id="transactionAmount"
-          placeholder="Amount in ₹"
-          min="1"
-          step="0.01"
-          required
-        >
-
-        <select class="form-control" id="transactionType">
-          <option value="income">Income</option>
-          <option value="expense">Expense</option>
-        </select>
-
-        <input
-          class="form-control"
-          type="date"
-          id="transactionDate"
-          required
-        >
-
-        <button type="submit" class="primary-button">+ Add Transaction</button>
-
-      </form>
-    </div>
-
-    <div class="card">
-      <div class="card-heading">
-        <h3>Recent Transactions</h3>
-        <button class="secondary-button" onclick="exportCSV()">Export CSV ↓</button>
-      </div>
-
-      <div id="transactionList">
-        <p class="empty-state">No transactions added yet.</p>
-      </div>
-    </div>
-
+  <div class="panel">
+    <h3>➕ Add a transaction</h3>
+    <form id="transactionForm" class="transaction-form">
+      <input id="transactionName" placeholder="Description" required>
+      <input id="transactionAmount" type="number" min="1" step="0.01" placeholder="Amount (₹)" required>
+      <select id="transactionType">
+        <option value="income">Income</option>
+        <option value="expense">Expense</option>
+      </select>
+      <button class="btn" type="submit">Add transaction</button>
+    </form>
   </div>
 
+  <div class="panel">
+    <div style="display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap">
+      <h3>📋 Transaction history</h3>
+      <button class="btn secondary" id="exportCSV">Export CSV</button>
+    </div>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Description</th><th>Type</th><th>Amount</th><th>Action</th></tr></thead>
+        <tbody id="transactionRows"></tbody>
+      </table>
+    </div>
+    <div id="emptyTransactions" class="empty">No transactions yet. Add your first record above.</div>
+  </div>
+
+  <div class="notice">Your records are saved in this browser using local storage. They are not uploaded to a cloud database and may not appear on another device.</div>
 </section>
 
 <!-- RESOURCES -->
-<section class="page-section" id="resources">
-
-  <div class="section-heading">
-    <h2>Farmer Resources</h2>
-    <p>Useful government portals and agricultural knowledge platforms.</p>
+<section class="page" id="resources">
+  <div class="hero">
+    <span class="hero-tag">KNOWLEDGE FOR FARMERS</span>
+    <h2>Learn. Explore. Empower.</h2>
+    <p>Useful official agricultural platforms and information resources.</p>
   </div>
 
-  <div class="resource-grid">
-
-    <div class="resource">
-      <div class="resource-icon">🏪</div>
-      <div>
-        <h3>e-NAM</h3>
-        <p>National Agriculture Market platform</p>
-        <a href="https://www.enam.gov.in/" target="_blank" rel="noopener">Visit Portal →</a>
-      </div>
+  <div class="grid two">
+    <div class="card">
+      <div class="card-icon">🏪</div>
+      <h3>e-NAM</h3>
+      <p>National Agriculture Market: an electronic trading platform for agricultural commodities.</p>
+      <a class="resource-link" href="https://www.enam.gov.in/" target="_blank" rel="noopener">Visit e-NAM ↗</a>
     </div>
-
-    <div class="resource">
-      <div class="resource-icon">📊</div>
-      <div>
-        <h3>AGMARKNET</h3>
-        <p>Agricultural marketing information</p>
-        <a href="https://agmarknet.gov.in/" target="_blank" rel="noopener">Visit Portal →</a>
-      </div>
+    <div class="card">
+      <div class="card-icon">📊</div>
+      <h3>AGMARKNET</h3>
+      <p>Explore agricultural marketing information and market price reports.</p>
+      <a class="resource-link" href="https://agmarknet.gov.in/" target="_blank" rel="noopener">Visit AGMARKNET ↗</a>
     </div>
-
-    <div class="resource">
-      <div class="resource-icon">🌦️</div>
-      <div>
-        <h3>IMD</h3>
-        <p>Weather forecasts and alerts</p>
-        <a href="https://mausam.imd.gov.in/" target="_blank" rel="noopener">Visit Portal →</a>
-      </div>
+    <div class="card">
+      <div class="card-icon">🌦️</div>
+      <h3>India Meteorological Department</h3>
+      <p>Official weather forecasts, warnings and meteorological information.</p>
+      <a class="resource-link" href="https://mausam.imd.gov.in/" target="_blank" rel="noopener">Visit IMD ↗</a>
     </div>
-
-    <div class="resource">
-      <div class="resource-icon">🌱</div>
-      <div>
-        <h3>ICAR</h3>
-        <p>Agricultural research and development</p>
-        <a href="https://icar.org.in/" target="_blank" rel="noopener">Visit Portal →</a>
-      </div>
+    <div class="card">
+      <div class="card-icon">🔬</div>
+      <h3>ICAR</h3>
+      <p>Research, agricultural education and scientific information.</p>
+      <a class="resource-link" href="https://icar.org.in/" target="_blank" rel="noopener">Visit ICAR ↗</a>
     </div>
-
-    <div class="resource">
-      <div class="resource-icon">🏛️</div>
-      <div>
-        <h3>PM-KISAN</h3>
-        <p>Farmer support scheme information</p>
-        <a href="https://pmkisan.gov.in/" target="_blank" rel="noopener">Visit Portal →</a>
-      </div>
+    <div class="card">
+      <div class="card-icon">🏛️</div>
+      <h3>PM-KISAN</h3>
+      <p>Official information about the PM-KISAN scheme.</p>
+      <a class="resource-link" href="https://pmkisan.gov.in/" target="_blank" rel="noopener">Visit PM-KISAN ↗</a>
     </div>
-
-    <div class="resource">
-      <div class="resource-icon">📖</div>
-      <div>
-        <h3>Ministry of Agriculture</h3>
-        <p>Government agricultural programmes</p>
-        <a href="https://agriwelfare.gov.in/" target="_blank" rel="noopener">Visit Portal →</a>
-      </div>
+    <div class="card">
+      <div class="card-icon">🌱</div>
+      <h3>Ministry of Agriculture</h3>
+      <p>Government agricultural policies, programmes and updates.</p>
+      <a class="resource-link" href="https://agriwelfare.gov.in/" target="_blank" rel="noopener">Visit Ministry ↗</a>
     </div>
-
   </div>
-
 </section>
 
 <footer class="footer">
-  <span>© 2026 Agri Sakhi · The Intelligent Farm Guardian</span>
-  <span>Technology for sustainable agriculture 🌿</span>
+  <strong>Agri Sakhi</strong> · The Intelligent Farm Guardian<br>
+  A digital agriculture project promoting informed and sustainable farming.
 </footer>
 
 </main>
 </div>
 
 <script>
+// THEME MANAGEMENT
+const themeToggle = document.getElementById("themeToggle");
+const root = document.documentElement;
 
-/* ----------------------------------
-   NAVIGATION
----------------------------------- */
+function setTheme(theme) {
+  root.setAttribute("data-theme", theme);
+  localStorage.setItem("agrisakhi-theme", theme);
+  themeToggle.textContent = theme === "dark" ? "☀️ Light Mode" : "🌙 Dark Mode";
+  document.querySelector('meta[name="theme-color"]').content =
+    theme === "dark" ? "#101b20" : "#f3f7f2";
+}
 
-const pageInfo = {
-  dashboard: ["Dashboard", "Your farm at a glance. Make every decision count."],
-  markets: ["Mandi Prices", "Compare crop prices across market locations."],
-  advisory: ["Crop Advisory", "Weather awareness and practical crop-care guidance."],
-  farm: ["Farm Management", "Explore smart farming systems and controls."],
-  sustainability: ["Sustainability", "Explore resource-efficient agricultural solutions."],
-  finance: ["Finance Tracker", "Keep track of your farm's financial activity."],
-  resources: ["Farmer Resources", "Useful agricultural portals and information."]
+const savedTheme = localStorage.getItem("agrisakhi-theme");
+setTheme(savedTheme || "light");
+
+themeToggle.addEventListener("click", () => {
+  const current = root.getAttribute("data-theme");
+  setTheme(current === "dark" ? "light" : "dark");
+});
+
+// NAVIGATION
+const titles = {
+  dashboard:"Dashboard",
+  mandi:"Mandi Prices",
+  advisory:"Crop Advisory",
+  management:"Farm Management",
+  sustainability:"Sustainability",
+  finance:"Finance Tracker",
+  resources:"Farmer Resources"
 };
 
 function showPage(page) {
-  document.querySelectorAll(".page-section").forEach(section => {
-    section.classList.remove("active");
-  });
+  document.querySelectorAll(".page").forEach(p => p.classList.remove("active"));
+  document.querySelectorAll(".nav-item").forEach(n => n.classList.remove("active"));
 
   document.getElementById(page).classList.add("active");
-
-  document.querySelectorAll(".nav-link").forEach(link => {
-    link.classList.toggle("active", link.dataset.page === page);
-  });
-
-  document.getElementById("pageTitle").textContent = pageInfo[page][0];
-  document.getElementById("pageSubtitle").textContent = pageInfo[page][1];
+  document.querySelector(`[data-page="${page}"]`).classList.add("active");
+  document.getElementById("pageTitle").textContent = titles[page];
 
   document.getElementById("sidebar").classList.remove("open");
-
-  window.scrollTo({top: 0, behavior: "smooth"});
+  window.scrollTo(0,0);
 }
 
-document.querySelectorAll(".nav-link").forEach(link => {
-  link.addEventListener("click", () => showPage(link.dataset.page));
+document.querySelectorAll(".nav-item").forEach(item => {
+  item.addEventListener("click", () => showPage(item.dataset.page));
 });
 
 document.getElementById("menuToggle").addEventListener("click", () => {
   document.getElementById("sidebar").classList.toggle("open");
 });
 
-/* ----------------------------------
-   DATE
----------------------------------- */
-
-const today = new Date();
-
-document.getElementById("todayDate").textContent =
-  today.toLocaleDateString("en-IN", {
-    day: "numeric",
-    month: "short",
-    year: "numeric"
-  });
-
-document.getElementById("transactionDate").value =
-  today.toISOString().split("T")[0];
-
-/* ----------------------------------
-   MANDI PRICE DATA
----------------------------------- */
-
-const markets = [
-  {
-    crop: "Wheat",
-    market: "Greenfield Demo Mandi",
-    location: "West Delhi",
-    min: 2250,
-    max: 2480,
-    modal: 2370,
-    trend: "up"
-  },
-  {
-    crop: "Mustard",
-    market: "Greenfield Demo Mandi",
-    location: "West Delhi",
-    min: 5100,
-    max: 5450,
-    modal: 5280,
-    trend: "up"
-  },
-  {
-    crop: "Potato",
-    market: "Greenfield Demo Mandi",
-    location: "West Delhi",
-    min: 900,
-    max: 1200,
-    modal: 1050,
-    trend: "down"
-  },
-  {
-    crop: "Rice",
-    market: "Riverbend Demo Market",
-    location: "East Delhi",
-    min: 2900,
-    max: 3250,
-    modal: 3100,
-    trend: "up"
-  },
-  {
-    crop: "Tomato",
-    market: "Riverbend Demo Market",
-    location: "East Delhi",
-    min: 1400,
-    max: 1900,
-    modal: 1650,
-    trend: "down"
-  },
-  {
-    crop: "Onion",
-    market: "Riverbend Demo Market",
-    location: "East Delhi",
-    min: 1700,
-    max: 2100,
-    modal: 1900,
-    trend: "up"
-  },
-  {
-    crop: "Wheat",
-    market: "Sunrise Demo Mandi",
-    location: "South Delhi",
-    min: 2300,
-    max: 2500,
-    modal: 2420,
-    trend: "up"
-  },
-  {
-    crop: "Rice",
-    market: "Sunrise Demo Mandi",
-    location: "South Delhi",
-    min: 3000,
-    max: 3300,
-    modal: 3170,
-    trend: "down"
-  },
-  {
-    crop: "Tomato",
-    market: "Sunrise Demo Mandi",
-    location: "South Delhi",
-    min: 1300,
-    max: 1800,
-    modal: 1550,
-    trend: "up"
-  },
-  {
-    crop: "Mustard",
-    market: "Harvest Demo Market",
-    location: "North Delhi",
-    min: 5000,
-    max: 5400,
-    modal: 5200,
-    trend: "down"
-  },
-  {
-    crop: "Potato",
-    market: "Harvest Demo Market",
-    location: "North Delhi",
-    min: 950,
-    max: 1250,
-    modal: 1100,
-    trend: "up"
-  },
-  {
-    crop: "Onion",
-    market: "Harvest Demo Market",
-    location: "North Delhi",
-    min: 1600,
-    max: 2050,
-    modal: 1850,
-    trend: "down"
-  },
-  {
-    crop: "Wheat",
-    market: "Meadow Demo Mandi",
-    location: "Gurugram",
-    min: 2280,
-    max: 2520,
-    modal: 2400,
-    trend: "up"
-  },
-  {
-    crop: "Tomato",
-    market: "Meadow Demo Mandi",
-    location: "Gurugram",
-    min: 1500,
-    max: 1950,
-    modal: 1750,
-    trend: "up"
-  },
-  {
-    crop: "Onion",
-    market: "Meadow Demo Mandi",
-    location: "Gurugram",
-    min: 1650,
-    max: 2150,
-    modal: 1950,
-    trend: "down"
-  },
-  {
-    crop: "Rice",
-    market: "Orchard Demo Market",
-    location: "Noida",
-    min: 2950,
-    max: 3250,
-    modal: 3120,
-    trend: "up"
-  },
-  {
-    crop: "Mustard",
-    market: "Orchard Demo Market",
-    location: "Noida",
-    min: 5050,
-    max: 5500,
-    modal: 5300,
-    trend: "down"
-  },
-  {
-    crop: "Potato",
-    market: "Orchard Demo Market",
-    location: "Noida",
-    min: 1000,
-    max: 1300,
-    modal: 1150,
-    trend: "up"
-  }
+// MANDI DATA
+const marketData = [
+  ["Wheat","Greenfield Demo Mandi","West Delhi",2450,"Stable"],
+  ["Rice","Greenfield Demo Mandi","West Delhi",3100,"Rising"],
+  ["Tomato","Riverbend Demo Market","East Delhi",1800,"Falling"],
+  ["Potato","Riverbend Demo Market","East Delhi",1400,"Stable"],
+  ["Mustard","Sunrise Demo Mandi","South Delhi",5650,"Rising"],
+  ["Onion","Sunrise Demo Mandi","South Delhi",2200,"Falling"],
+  ["Wheat","Harvest Demo Market","North Delhi",2500,"Rising"],
+  ["Rice","Harvest Demo Market","North Delhi",3050,"Stable"],
+  ["Tomato","Meadow Demo Mandi","Gurugram",1950,"Rising"],
+  ["Potato","Meadow Demo Mandi","Gurugram",1500,"Stable"],
+  ["Mustard","Orchard Demo Market","Noida",5500,"Falling"],
+  ["Onion","Orchard Demo Market","Noida",2350,"Rising"],
+  ["Wheat","Orchard Demo Market","Noida",2480,"Stable"],
+  ["Rice","Meadow Demo Mandi","Gurugram",3150,"Rising"],
+  ["Tomato","Sunrise Demo Mandi","South Delhi",1700,"Falling"],
+  ["Potato","Harvest Demo Market","North Delhi",1450,"Stable"],
+  ["Mustard","Riverbend Demo Market","East Delhi",5700,"Rising"],
+  ["Onion","Greenfield Demo Mandi","West Delhi",2250,"Stable"]
 ];
 
-function formatPrice(value) {
-  return "₹" + value.toLocaleString("en-IN");
-}
+function renderMarkets() {
+  const search = document.getElementById("marketSearch").value.toLowerCase();
+  const crop = document.getElementById("cropFilter").value;
 
-function renderMarketTable() {
-  const search = document
-    .getElementById("marketSearch")
-    .value.toLowerCase()
-    .trim();
+  const filtered = marketData.filter(row =>
+    row.join(" ").toLowerCase().includes(search) &&
+    (!crop || row[0] === crop)
+  );
 
-  const cropFilter = document.getElementById("cropFilter").value;
+  const tbody = document.getElementById("marketRows");
 
-  const filtered = markets.filter(item => {
-    const matchesSearch =
-      item.crop.toLowerCase().includes(search) ||
-      item.market.toLowerCase().includes(search) ||
-      item.location.toLowerCase().includes(search);
-
-    const matchesCrop =
-      cropFilter === "all" || item.crop === cropFilter;
-
-    return matchesSearch && matchesCrop;
-  });
-
-  const rows = document.getElementById("marketRows");
-
-  if (filtered.length === 0) {
-    rows.innerHTML = `
-      <tr>
-        <td colspan="7" class="empty-state">
-          No matching market results found. Try another search.
-        </td>
-      </tr>
-    `;
-    return;
-  }
-
-  rows.innerHTML = filtered.map(item => `
+  tbody.innerHTML = filtered.length ? filtered.map(row => `
     <tr>
-      <td><strong>${item.crop}</strong></td>
-      <td>${item.market}</td>
-      <td class="muted">${item.location}</td>
-      <td>${formatPrice(item.min)}</td>
-      <td>${formatPrice(item.max)}</td>
-      <td><strong>${formatPrice(item.modal)}</strong></td>
-      <td class="${item.trend === "up" ? "trend-up" : "trend-down"}">
-        ${item.trend === "up" ? "↗ Rising" : "↘ Falling"}
-      </td>
+      <td><strong>${row[0]}</strong></td>
+      <td>${row[1]}</td>
+      <td>${row[2]}</td>
+      <td>₹${row[3].toLocaleString("en-IN")}</td>
+      <td><span class="tag">${row[4]}</span></td>
     </tr>
-  `).join("");
+  `).join("") : `<tr><td colspan="5" class="empty">No matching records found.</td></tr>`;
 }
 
-document.getElementById("marketSearch")
-  .addEventListener("input", renderMarketTable);
+document.getElementById("marketSearch").addEventListener("input",renderMarkets);
+document.getElementById("cropFilter").addEventListener("change",renderMarkets);
+renderMarkets();
 
-document.getElementById("cropFilter")
-  .addEventListener("change", renderMarketTable);
+// DEMONSTRATION CONTROLS
+[
+  ["dripSwitch","dripStatus","Drip irrigation"],
+  ["sprinklerSwitch","sprinklerStatus","Sprinkler irrigation"],
+  ["cameraSwitch","cameraStatus","Monitoring camera"]
+].forEach(([switchId,statusId,label]) => {
+  document.getElementById(switchId).addEventListener("change",e => {
+    document.getElementById(statusId).textContent =
+      "Demo status: " + (e.target.checked ? "ON" : "OFF");
+  });
+});
 
-renderMarketTable();
-
-/* ----------------------------------
-   IRRIGATION DEMO CONTROLS
----------------------------------- */
-
-const irrigation = {
-  drip: false,
-  sprinkler: false
-};
-
-function toggleIrrigation(type) {
-  irrigation[type] = !irrigation[type];
-
-  const status = document.getElementById(type + "Status");
-
-  status.textContent = irrigation[type] ? "ON" : "OFF";
-  status.classList.toggle("off", !irrigation[type]);
-
-  const count = Object.values(irrigation).filter(Boolean).length;
-
-  document.getElementById("irrigationCount").textContent =
-    count + " / 2";
-}
-
-/* ----------------------------------
-   CAMERA DEMO
----------------------------------- */
-
-let cameraOn = false;
-
-function toggleCamera() {
-  cameraOn = !cameraOn;
-
-  const status = document.getElementById("cameraStatus");
-
-  status.textContent = cameraOn ? "DEMO ACTIVE" : "NOT CONNECTED";
-  status.classList.toggle("off", !cameraOn);
-}
-
-/* ----------------------------------
-   FINANCE TRACKER
----------------------------------- */
-
+// FINANCE TRACKER
 let transactions = [];
 
 try {
-  transactions = JSON.parse(
-    localStorage.getItem("agriSakhiTransactions") || "[]"
-  );
-
+  transactions = JSON.parse(localStorage.getItem("agrisakhi-transactions") || "[]");
   if (!Array.isArray(transactions)) transactions = [];
-} catch (error) {
+} catch {
   transactions = [];
 }
 
+const money = value => "₹" + value.toLocaleString("en-IN", {
+  maximumFractionDigits:2
+});
+
 function saveTransactions() {
-  try {
-    localStorage.setItem(
-      "agriSakhiTransactions",
-      JSON.stringify(transactions)
-    );
-  } catch (error) {
-    alert("Unable to save data in this browser.");
-  }
+  localStorage.setItem("agrisakhi-transactions",JSON.stringify(transactions));
 }
 
-function renderTransactions() {
-  const list = document.getElementById("transactionList");
+function renderFinance() {
+  const income = transactions
+    .filter(t => t.type === "income")
+    .reduce((sum,t) => sum + t.amount,0);
 
-  let income = 0;
-  let expense = 0;
+  const expenses = transactions
+    .filter(t => t.type === "expense")
+    .reduce((sum,t) => sum + t.amount,0);
 
-  transactions.forEach(item => {
-    if (item.type === "income") {
-      income += item.amount;
-    } else {
-      expense += item.amount;
-    }
+  document.getElementById("totalIncome").textContent = money(income);
+  document.getElementById("totalExpense").textContent = money(expenses);
+  document.getElementById("netBalance").textContent = money(income-expenses);
+
+  const tbody = document.getElementById("transactionRows");
+  const empty = document.getElementById("emptyTransactions");
+
+  empty.style.display = transactions.length ? "none" : "block";
+
+  tbody.innerHTML = transactions.map((t,i) => `
+    <tr>
+      <td>${escapeHTML(t.name)}</td>
+      <td><span class="tag">${t.type}</span></td>
+      <td>${money(t.amount)}</td>
+      <td><button class="btn danger delete-transaction" data-index="${i}">Delete</button></td>
+    </tr>
+  `).join("");
+
+  tbody.querySelectorAll(".delete-transaction").forEach(button => {
+    button.addEventListener("click",() => {
+      transactions.splice(Number(button.dataset.index),1);
+      saveTransactions();
+      renderFinance();
+    });
   });
-
-  document.getElementById("totalIncome").textContent =
-    formatPrice(income);
-
-  document.getElementById("totalExpense").textContent =
-    formatPrice(expense);
-
-  const balance = income - expense;
-
-  const balanceElement = document.getElementById("netBalance");
-
-  balanceElement.textContent = formatPrice(balance);
-  balanceElement.style.color =
-    balance >= 0 ? "var(--green)" : "var(--red)";
-
-  if (transactions.length === 0) {
-    list.innerHTML =
-      '<p class="empty-state">No transactions added yet.</p>';
-    return;
-  }
-
-  list.innerHTML = [...transactions]
-    .reverse()
-    .map((item, index) => `
-      <div class="transaction">
-        <div>
-          <strong>${escapeHTML(item.name)}</strong>
-          <small>${escapeHTML(item.date)} · ${item.type}</small>
-        </div>
-
-        <div style="display:flex;align-items:center;gap:12px">
-          <span class="${item.type === "income" ? "income" : "expense"}">
-            ${item.type === "income" ? "+" : "−"}${formatPrice(item.amount)}
-          </span>
-          <button
-            class="secondary-button"
-            onclick="deleteTransaction(${transactions.length - 1 - index})"
-            aria-label="Delete transaction"
-          >×</button>
-        </div>
-      </div>
-    `).join("");
 }
 
 function escapeHTML(value) {
-  return String(value).replace(/[&<>"']/g, character => ({
-    "&": "&amp;",
-    "<": "&lt;",
-    ">": "&gt;",
-    '"': "&quot;",
-    "'": "&#039;"
-  })[character]);
+  return String(value).replace(/[&<>"']/g, char => ({
+    "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"
+  }[char]));
 }
 
-document.getElementById("financeForm")
-  .addEventListener("submit", function(event) {
-    event.preventDefault();
+document.getElementById("transactionForm").addEventListener("submit",e => {
+  e.preventDefault();
 
-    const name = document
-      .getElementById("transactionName").value.trim();
+  const name = document.getElementById("transactionName").value.trim();
+  const amount = Number(document.getElementById("transactionAmount").value);
+  const type = document.getElementById("transactionType").value;
 
-    const amount = Number(
-      document.getElementById("transactionAmount").value
-    );
+  if (!name || !Number.isFinite(amount) || amount <= 0) return;
 
-    const type = document.getElementById("transactionType").value;
-
-    const date = document.getElementById("transactionDate").value;
-
-    if (!name || !Number.isFinite(amount) || amount <= 0 || !date) {
-      alert("Please enter valid transaction details.");
-      return;
-    }
-
-    transactions.push({
-      name,
-      amount,
-      type,
-      date
-    });
-
-    saveTransactions();
-    renderTransactions();
-
-    this.reset();
-
-    document.getElementById("transactionDate").value =
-      new Date().toISOString().split("T")[0];
-  });
-
-function deleteTransaction(index) {
-  if (!confirm("Delete this transaction?")) return;
-
-  transactions.splice(index, 1);
+  transactions.unshift({name,amount,type});
   saveTransactions();
-  renderTransactions();
-}
+  renderFinance();
+  e.target.reset();
+});
 
-function exportCSV() {
-  if (transactions.length === 0) {
+document.getElementById("exportCSV").addEventListener("click",() => {
+  if (!transactions.length) {
     alert("There are no transactions to export yet.");
     return;
   }
 
   const rows = [
-    ["Description", "Amount", "Type", "Date"],
-    ...transactions.map(item => [
-      item.name,
-      item.amount,
-      item.type,
-      item.date
-    ])
+    ["Description","Type","Amount"],
+    ...transactions.map(t => [t.name,t.type,t.amount])
   ];
 
   const csv = rows.map(row =>
-    row.map(value =>
-      '"' + String(value).replace(/"/g, '""') + '"'
-    ).join(",")
+    row.map(value => `"${String(value).replace(/"/g,'""')}"`).join(",")
   ).join("\n");
 
-  const blob = new Blob(
-    ["\uFEFF" + csv],
-    {type: "text/csv;charset=utf-8;"}
-  );
-
+  const blob = new Blob(["\uFEFF"+csv],{type:"text/csv;charset=utf-8"});
   const url = URL.createObjectURL(blob);
   const link = document.createElement("a");
 
   link.href = url;
-  link.download = "agri-sakhi-finances.csv";
+  link.download = "agrisakhi-finances.csv";
   link.click();
 
   URL.revokeObjectURL(url);
-}
+});
 
-renderTransactions();
-
+renderFinance();
 </script>
-
 </body>
 </html>

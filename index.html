@@ -4,7 +4,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#f3f7f2">
+<meta name="theme-color" content="#101b20">
 <title>Agri Sakhi | The Intelligent Farm Guardian</title>
 
 <style>
@@ -366,34 +366,6 @@ input:focus,select:focus {border-color:var(--primary)}
 
 .transaction-form input,.transaction-form select {width:100%}
 
-.chart {
-  display:flex;
-  align-items:flex-end;
-  gap:12px;
-  height:150px;
-  padding-top:15px;
-}
-
-.bar-wrap {
-  flex:1;
-  height:100%;
-  display:flex;
-  flex-direction:column;
-  justify-content:flex-end;
-  align-items:center;
-  gap:7px;
-}
-
-.bar {
-  width:65%;
-  max-width:45px;
-  background:var(--primary);
-  border-radius:6px 6px 0 0;
-  min-height:5px;
-}
-
-.bar-wrap span {font-size:10px;color:var(--muted)}
-
 .resource-link {
   display:block;
   color:var(--primary);
@@ -477,7 +449,6 @@ input:focus,select:focus {border-color:var(--primary)}
   </div>
 
   <div class="nav-label">MAIN MENU</div>
-
   <div class="nav-item active" data-page="dashboard"><span class="nav-icon">⌂</span> Dashboard</div>
   <div class="nav-item" data-page="mandi"><span class="nav-icon">📊</span> Mandi Prices</div>
   <div class="nav-item" data-page="advisory"><span class="nav-icon">🌦️</span> Crop Advisory</div>
@@ -504,11 +475,10 @@ input:focus,select:focus {border-color:var(--primary)}
     </div>
   </div>
   <div class="top-actions">
-    <button class="theme-toggle" id="themeToggle">🌙 Dark Mode</button>
+    <button class="theme-toggle" id="themeToggle">☀️ Light Mode</button>
   </div>
 </header>
 
-<!-- DASHBOARD -->
 <section class="page active" id="dashboard">
   <div class="hero">
     <span class="hero-tag">THE INTELLIGENT FARM GUARDIAN</span>
@@ -566,7 +536,6 @@ input:focus,select:focus {border-color:var(--primary)}
   </div>
 </section>
 
-<!-- MANDI -->
 <section class="page" id="mandi">
   <div class="hero">
     <span class="hero-tag">MARKET INTELLIGENCE</span>
@@ -604,7 +573,6 @@ input:focus,select:focus {border-color:var(--primary)}
   </div>
 </section>
 
-<!-- ADVISORY -->
 <section class="page" id="advisory">
   <div class="hero">
     <span class="hero-tag">CROP INTELLIGENCE</span>
@@ -613,48 +581,16 @@ input:focus,select:focus {border-color:var(--primary)}
   </div>
 
   <div class="grid three">
-    <div class="card">
-      <div class="card-icon">🌾</div>
-      <h3>Wheat</h3>
-      <p>Monitor soil moisture, maintain appropriate spacing and observe crops regularly for signs of disease.</p>
-      <span class="tag">Rabi crop</span>
-    </div>
-    <div class="card">
-      <div class="card-icon">🍚</div>
-      <h3>Rice</h3>
-      <p>Use suitable water-management practices and select varieties adapted to local conditions.</p>
-      <span class="tag">Kharif crop</span>
-    </div>
-    <div class="card">
-      <div class="card-icon">🍅</div>
-      <h3>Tomato</h3>
-      <p>Monitor plant health, ensure suitable drainage and check for common pests regularly.</p>
-      <span class="tag">Vegetable crop</span>
-    </div>
-    <div class="card">
-      <div class="card-icon">🧅</div>
-      <h3>Onion</h3>
-      <p>Good drainage and appropriate irrigation are important throughout crop development.</p>
-      <span class="tag">Vegetable crop</span>
-    </div>
-    <div class="card">
-      <div class="card-icon">🥔</div>
-      <h3>Potato</h3>
-      <p>Monitor soil conditions and watch for signs of disease or unusual plant growth.</p>
-      <span class="tag">Rabi crop</span>
-    </div>
-    <div class="card">
-      <div class="card-icon">🌻</div>
-      <h3>Mustard</h3>
-      <p>Maintain suitable soil moisture and monitor crop growth during flowering.</p>
-      <span class="tag">Rabi crop</span>
-    </div>
+    <div class="card"><div class="card-icon">🌾</div><h3>Wheat</h3><p>Monitor soil moisture, maintain appropriate spacing and observe crops regularly for signs of disease.</p><span class="tag">Rabi crop</span></div>
+    <div class="card"><div class="card-icon">🍚</div><h3>Rice</h3><p>Use suitable water-management practices and select varieties adapted to local conditions.</p><span class="tag">Kharif crop</span></div>
+    <div class="card"><div class="card-icon">🍅</div><h3>Tomato</h3><p>Monitor plant health, ensure suitable drainage and check for common pests regularly.</p><span class="tag">Vegetable crop</span></div>
+    <div class="card"><div class="card-icon">🧅</div><h3>Onion</h3><p>Good drainage and appropriate irrigation are important throughout crop development.</p><span class="tag">Vegetable crop</span></div>
+    <div class="card"><div class="card-icon">🥔</div><h3>Potato</h3><p>Monitor soil conditions and watch for signs of disease or unusual plant growth.</p><span class="tag">Rabi crop</span></div>
+    <div class="card"><div class="card-icon">🌻</div><h3>Mustard</h3><p>Maintain suitable soil moisture and monitor crop growth during flowering.</p><span class="tag">Rabi crop</span></div>
   </div>
-
   <div class="notice">These are general educational pointers, not personalised or live crop prescriptions. Consult local agricultural experts for field-specific advice.</div>
 </section>
 
-<!-- FARM MANAGEMENT -->
 <section class="page" id="management">
   <div class="hero">
     <span class="hero-tag">SMART FARM MANAGEMENT</span>
@@ -663,89 +599,16 @@ input:focus,select:focus {border-color:var(--primary)}
   </div>
 
   <div class="grid two">
-    <div class="card">
-      <div class="feature">
-        <div class="feature-icon">💧</div>
-        <div class="feature-content">
-          <h3>Drip Irrigation</h3>
-          <p>Targeted water delivery near plant roots.</p>
-          <p id="dripStatus" class="positive" style="margin-top:9px">Demo status: OFF</p>
-        </div>
-        <label class="switch">
-          <input type="checkbox" id="dripSwitch">
-          <span class="slider"></span>
-        </label>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="feature">
-        <div class="feature-icon">🚿</div>
-        <div class="feature-content">
-          <h3>Sprinkler Irrigation</h3>
-          <p>Water distribution through sprinkler systems.</p>
-          <p id="sprinklerStatus" class="positive" style="margin-top:9px">Demo status: OFF</p>
-        </div>
-        <label class="switch">
-          <input type="checkbox" id="sprinklerSwitch">
-          <span class="slider"></span>
-        </label>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="feature">
-        <div class="feature-icon">📷</div>
-        <div class="feature-content">
-          <h3>Monitoring Camera</h3>
-          <p>Proposed visual monitoring of farm conditions.</p>
-          <p id="cameraStatus" class="positive" style="margin-top:9px">Demo status: OFF</p>
-        </div>
-        <label class="switch">
-          <input type="checkbox" id="cameraSwitch">
-          <span class="slider"></span>
-        </label>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="feature">
-        <div class="feature-icon">🐛</div>
-        <div class="feature-content">
-          <h3>Pest Oscillator</h3>
-          <p>A proposed pest-management concept using oscillation to discourage selected pests.</p>
-          <span class="tag">Concept feature</span>
-        </div>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="feature">
-        <div class="feature-icon">💦</div>
-        <div class="feature-content">
-          <h3>Dew Drop Collector</h3>
-          <p>Concept for collecting atmospheric moisture through condensation.</p>
-          <span class="tag">Water conservation</span>
-        </div>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="feature">
-        <div class="feature-icon">🐟</div>
-        <div class="feature-content">
-          <h3>Aquaponics</h3>
-          <p>A proposed integrated system combining fish cultivation and soilless plant growing.</p>
-          <span class="tag">Integrated farming</span>
-        </div>
-      </div>
-    </div>
+    <div class="card"><div class="feature"><div class="feature-icon">💧</div><div class="feature-content"><h3>Drip Irrigation</h3><p>Targeted water delivery near plant roots.</p><p id="dripStatus" class="positive" style="margin-top:9px">Demo status: OFF</p></div><label class="switch"><input type="checkbox" id="dripSwitch"><span class="slider"></span></label></div></div>
+    <div class="card"><div class="feature"><div class="feature-icon">🚿</div><div class="feature-content"><h3>Sprinkler Irrigation</h3><p>Water distribution through sprinkler systems.</p><p id="sprinklerStatus" class="positive" style="margin-top:9px">Demo status: OFF</p></div><label class="switch"><input type="checkbox" id="sprinklerSwitch"><span class="slider"></span></label></div></div>
+    <div class="card"><div class="feature"><div class="feature-icon">📷</div><div class="feature-content"><h3>Monitoring Camera</h3><p>Proposed visual monitoring of farm conditions.</p><p id="cameraStatus" class="positive" style="margin-top:9px">Demo status: OFF</p></div><label class="switch"><input type="checkbox" id="cameraSwitch"><span class="slider"></span></label></div></div>
+    <div class="card"><div class="feature"><div class="feature-icon">🐛</div><div class="feature-content"><h3>Pest Oscillator</h3><p>A proposed pest-management concept using oscillation to discourage selected pests.</p><span class="tag">Concept feature</span></div></div></div>
+    <div class="card"><div class="feature"><div class="feature-icon">💦</div><div class="feature-content"><h3>Dew Drop Collector</h3><p>Concept for collecting atmospheric moisture through condensation.</p><span class="tag">Water conservation</span></div></div></div>
+    <div class="card"><div class="feature"><div class="feature-icon">🐟</div><div class="feature-content"><h3>Aquaponics</h3><p>A proposed integrated system combining fish cultivation and soilless plant growing.</p><span class="tag">Integrated farming</span></div></div></div>
   </div>
-
   <div class="notice">These switches are interactive demonstrations only. They do not connect to physical irrigation systems, cameras or sensors.</div>
 </section>
 
-<!-- SUSTAINABILITY -->
 <section class="page" id="sustainability">
   <div class="hero">
     <span class="hero-tag">GREEN AGRICULTURE</span>
@@ -754,40 +617,15 @@ input:focus,select:focus {border-color:var(--primary)}
   </div>
 
   <div class="grid three">
-    <div class="card">
-      <div class="card-icon">☀️</div>
-      <h3>Solar Panels</h3>
-      <p>Solar energy can support selected agricultural electricity needs, depending on system design.</p>
-    </div>
-    <div class="card">
-      <div class="card-icon">🌬️</div>
-      <h3>Wind Turbine</h3>
-      <p>Wind energy offers another renewable electricity source where wind conditions are suitable.</p>
-    </div>
-    <div class="card">
-      <div class="card-icon">🔥</div>
-      <h3>Parali to Bioenergy</h3>
-      <p>Crop residues can be processed into useful bioenergy through appropriate technologies.</p>
-    </div>
-    <div class="card">
-      <div class="card-icon">✒️</div>
-      <h3>Carbon to Ink</h3>
-      <p>A concept exploring the conversion of suitable recovered carbon materials into ink-related products.</p>
-    </div>
-    <div class="card">
-      <div class="card-icon">💧</div>
-      <h3>Water Conservation</h3>
-      <p>Efficient irrigation, rainwater harvesting and careful water management can reduce wastage.</p>
-    </div>
-    <div class="card">
-      <div class="card-icon">🐠</div>
-      <h3>Aquaponics</h3>
-      <p>An integrated approach that connects aquaculture and hydroponic plant production.</p>
-    </div>
+    <div class="card"><div class="card-icon">☀️</div><h3>Solar Panels</h3><p>Solar energy can support selected agricultural electricity needs, depending on system design.</p></div>
+    <div class="card"><div class="card-icon">🌬️</div><h3>Wind Turbine</h3><p>Wind energy offers another renewable electricity source where wind conditions are suitable.</p></div>
+    <div class="card"><div class="card-icon">🔥</div><h3>Parali to Bioenergy</h3><p>Crop residues can be processed into useful bioenergy through appropriate technologies.</p></div>
+    <div class="card"><div class="card-icon">✒️</div><h3>Carbon to Ink</h3><p>A concept exploring the conversion of suitable recovered carbon materials into ink-related products.</p></div>
+    <div class="card"><div class="card-icon">💧</div><h3>Water Conservation</h3><p>Efficient irrigation, rainwater harvesting and careful water management can reduce wastage.</p></div>
+    <div class="card"><div class="card-icon">🐠</div><h3>Aquaponics</h3><p>An integrated approach that connects aquaculture and hydroponic plant production.</p></div>
   </div>
 </section>
 
-<!-- FINANCE -->
 <section class="page" id="finance">
   <div class="hero">
     <span class="hero-tag">FARM FINANCIAL PLANNING</span>
@@ -796,29 +634,17 @@ input:focus,select:focus {border-color:var(--primary)}
   </div>
 
   <div class="grid three">
-    <div class="card">
-      <p>Total Income</p>
-      <div class="metric positive" id="totalIncome">₹0</div>
-    </div>
-    <div class="card">
-      <p>Total Expenses</p>
-      <div class="metric warning" id="totalExpense">₹0</div>
-    </div>
-    <div class="card">
-      <p>Net Balance</p>
-      <div class="metric" id="netBalance">₹0</div>
-    </div>
+    <div class="card"><p>Total Income</p><div class="metric positive" id="totalIncome">₹0</div></div>
+    <div class="card"><p>Total Expenses</p><div class="metric warning" id="totalExpense">₹0</div></div>
+    <div class="card"><p>Net Balance</p><div class="metric" id="netBalance">₹0</div></div>
   </div>
 
   <div class="panel">
     <h3>➕ Add a transaction</h3>
     <form id="transactionForm" class="transaction-form">
       <input id="transactionName" placeholder="Description" required>
-      <input id="transactionAmount" type="number" min="1" step="0.01" placeholder="Amount (₹)" required>
-      <select id="transactionType">
-        <option value="income">Income</option>
-        <option value="expense">Expense</option>
-      </select>
+      <input id="transactionAmount" type="number" min="0.01" step="0.01" placeholder="Amount (₹)" required>
+      <select id="transactionType"><option value="income">Income</option><option value="expense">Expense</option></select>
       <button class="btn" type="submit">Add transaction</button>
     </form>
   </div>
@@ -836,11 +662,9 @@ input:focus,select:focus {border-color:var(--primary)}
     </div>
     <div id="emptyTransactions" class="empty">No transactions yet. Add your first record above.</div>
   </div>
-
   <div class="notice">Your records are saved in this browser using local storage. They are not uploaded to a cloud database and may not appear on another device.</div>
 </section>
 
-<!-- RESOURCES -->
 <section class="page" id="resources">
   <div class="hero">
     <span class="hero-tag">KNOWLEDGE FOR FARMERS</span>
@@ -849,42 +673,12 @@ input:focus,select:focus {border-color:var(--primary)}
   </div>
 
   <div class="grid two">
-    <div class="card">
-      <div class="card-icon">🏪</div>
-      <h3>e-NAM</h3>
-      <p>National Agriculture Market: an electronic trading platform for agricultural commodities.</p>
-      <a class="resource-link" href="https://www.enam.gov.in/" target="_blank" rel="noopener">Visit e-NAM ↗</a>
-    </div>
-    <div class="card">
-      <div class="card-icon">📊</div>
-      <h3>AGMARKNET</h3>
-      <p>Explore agricultural marketing information and market price reports.</p>
-      <a class="resource-link" href="https://agmarknet.gov.in/" target="_blank" rel="noopener">Visit AGMARKNET ↗</a>
-    </div>
-    <div class="card">
-      <div class="card-icon">🌦️</div>
-      <h3>India Meteorological Department</h3>
-      <p>Official weather forecasts, warnings and meteorological information.</p>
-      <a class="resource-link" href="https://mausam.imd.gov.in/" target="_blank" rel="noopener">Visit IMD ↗</a>
-    </div>
-    <div class="card">
-      <div class="card-icon">🔬</div>
-      <h3>ICAR</h3>
-      <p>Research, agricultural education and scientific information.</p>
-      <a class="resource-link" href="https://icar.org.in/" target="_blank" rel="noopener">Visit ICAR ↗</a>
-    </div>
-    <div class="card">
-      <div class="card-icon">🏛️</div>
-      <h3>PM-KISAN</h3>
-      <p>Official information about the PM-KISAN scheme.</p>
-      <a class="resource-link" href="https://pmkisan.gov.in/" target="_blank" rel="noopener">Visit PM-KISAN ↗</a>
-    </div>
-    <div class="card">
-      <div class="card-icon">🌱</div>
-      <h3>Ministry of Agriculture</h3>
-      <p>Government agricultural policies, programmes and updates.</p>
-      <a class="resource-link" href="https://agriwelfare.gov.in/" target="_blank" rel="noopener">Visit Ministry ↗</a>
-    </div>
+    <div class="card"><div class="card-icon">🏪</div><h3>e-NAM</h3><p>National Agriculture Market: an electronic trading platform for agricultural commodities.</p><a class="resource-link" href="https://www.enam.gov.in/" target="_blank" rel="noopener">Visit e-NAM ↗</a></div>
+    <div class="card"><div class="card-icon">📊</div><h3>AGMARKNET</h3><p>Explore agricultural marketing information and market price reports.</p><a class="resource-link" href="https://agmarknet.gov.in/" target="_blank" rel="noopener">Visit AGMARKNET ↗</a></div>
+    <div class="card"><div class="card-icon">🌦️</div><h3>India Meteorological Department</h3><p>Official weather forecasts, warnings and meteorological information.</p><a class="resource-link" href="https://mausam.imd.gov.in/" target="_blank" rel="noopener">Visit IMD ↗</a></div>
+    <div class="card"><div class="card-icon">🔬</div><h3>ICAR</h3><p>Research, agricultural education and scientific information.</p><a class="resource-link" href="https://icar.org.in/" target="_blank" rel="noopener">Visit ICAR ↗</a></div>
+    <div class="card"><div class="card-icon">🏛️</div><h3>PM-KISAN</h3><p>Official information about the PM-KISAN scheme.</p><a class="resource-link" href="https://pmkisan.gov.in/" target="_blank" rel="noopener">Visit PM-KISAN ↗</a></div>
+    <div class="card"><div class="card-icon">🌱</div><h3>Ministry of Agriculture</h3><p>Government agricultural policies, programmes and updates.</p><a class="resource-link" href="https://agriwelfare.gov.in/" target="_blank" rel="noopener">Visit Ministry ↗</a></div>
   </div>
 </section>
 
@@ -902,17 +696,19 @@ const themeToggle = document.getElementById("themeToggle");
 const root = document.documentElement;
 
 function setTheme(theme) {
-  root.setAttribute("data-theme", theme);
-  localStorage.setItem("agrisakhi-theme", theme);
+  root.setAttribute("data-theme",theme);
+  localStorage.setItem("agrisakhi-theme",theme);
   themeToggle.textContent = theme === "dark" ? "☀️ Light Mode" : "🌙 Dark Mode";
+
   document.querySelector('meta[name="theme-color"]').content =
     theme === "dark" ? "#101b20" : "#f3f7f2";
 }
 
+// Dark mode is the default for first-time visitors.
 const savedTheme = localStorage.getItem("agrisakhi-theme");
-setTheme(savedTheme || "light");
+setTheme(savedTheme || "dark");
 
-themeToggle.addEventListener("click", () => {
+themeToggle.addEventListener("click",() => {
   const current = root.getAttribute("data-theme");
   setTheme(current === "dark" ? "light" : "dark");
 });
@@ -935,16 +731,16 @@ function showPage(page) {
   document.getElementById(page).classList.add("active");
   document.querySelector(`[data-page="${page}"]`).classList.add("active");
   document.getElementById("pageTitle").textContent = titles[page];
-
   document.getElementById("sidebar").classList.remove("open");
+
   window.scrollTo(0,0);
 }
 
 document.querySelectorAll(".nav-item").forEach(item => {
-  item.addEventListener("click", () => showPage(item.dataset.page));
+  item.addEventListener("click",() => showPage(item.dataset.page));
 });
 
-document.getElementById("menuToggle").addEventListener("click", () => {
+document.getElementById("menuToggle").addEventListener("click",() => {
   document.getElementById("sidebar").classList.toggle("open");
 });
 
@@ -998,10 +794,10 @@ renderMarkets();
 
 // DEMONSTRATION CONTROLS
 [
-  ["dripSwitch","dripStatus","Drip irrigation"],
-  ["sprinklerSwitch","sprinklerStatus","Sprinkler irrigation"],
-  ["cameraSwitch","cameraStatus","Monitoring camera"]
-].forEach(([switchId,statusId,label]) => {
+  ["dripSwitch","dripStatus"],
+  ["sprinklerSwitch","sprinklerStatus"],
+  ["cameraSwitch","cameraStatus"]
+].forEach(([switchId,statusId]) => {
   document.getElementById(switchId).addEventListener("change",e => {
     document.getElementById(statusId).textContent =
       "Demo status: " + (e.target.checked ? "ON" : "OFF");
@@ -1018,9 +814,15 @@ try {
   transactions = [];
 }
 
-const money = value => "₹" + value.toLocaleString("en-IN", {
+const money = value => "₹" + value.toLocaleString("en-IN",{
   maximumFractionDigits:2
 });
+
+function escapeHTML(value) {
+  return String(value).replace(/[&<>"']/g,char => ({
+    "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"
+  }[char]));
+}
 
 function saveTransactions() {
   localStorage.setItem("agrisakhi-transactions",JSON.stringify(transactions));
@@ -1060,12 +862,6 @@ function renderFinance() {
       renderFinance();
     });
   });
-}
-
-function escapeHTML(value) {
-  return String(value).replace(/[&<>"']/g, char => ({
-    "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"
-  }[char]));
 }
 
 document.getElementById("transactionForm").addEventListener("submit",e => {
